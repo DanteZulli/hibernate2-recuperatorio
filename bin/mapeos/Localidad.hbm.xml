@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="datos">
+    <class name="Localidad" table="localidades">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" column="nombre" type="string"/>
+        <many-to-one name="provincia" class="datos.Provincia" column="provincia_id" not-null="true"/>
+        <property name="createAt" column="create_at_localidad" type="timestamp"/>
+        <property name="updateAt" column="update_at_localidad" type="timestamp"/>
+    </class>
+</hibernate-mapping> 

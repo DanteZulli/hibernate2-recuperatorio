@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="datos">
+    <class name="Tecnico" table="tecnicos" extends="datos.Usuario">
+        <property name="nroContacto" column="nro_contacto" type="string"/>
+        <property name="empresa" column="empresa" type="string"/>
+        <many-to-one name="area" class="datos.Area" column="area_id"/>
+    </class>
+</hibernate-mapping> 

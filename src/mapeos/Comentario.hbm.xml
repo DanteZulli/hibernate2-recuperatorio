@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="datos">
+    <class name="Comentario" table="comentarios">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="mensaje" column="mensaje" type="string"/>
+        <property name="fecha" column="fecha" type="timestamp"/>
+        <many-to-one name="ticket" class="datos.Ticket" column="ticket_id" not-null="true"/>
+        <many-to-one name="usuario" class="datos.Usuario" column="usuario_id" not-null="true"/>
+        <property name="createAt" column="create_at_comentario" type="timestamp"/>
+        <property name="updateAt" column="update_at_comentario" type="timestamp"/>
+    </class>
+</hibernate-mapping> 

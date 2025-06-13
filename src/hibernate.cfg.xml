@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuración de conexión a la base de datos -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/hibernate2-recuperatorio?createDatabaseIfNotExist=true&amp;useSSL=false&amp;serverTimezone=America/Argentina/Buenos_Aires</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Mapeos de entidades -->
+        <mapping resource="mapeos/Area.hbm.xml"/>
+        <mapping resource="mapeos/Categoria.hbm.xml"/>
+        <mapping resource="mapeos/Cliente.hbm.xml"/>
+        <mapping resource="mapeos/Comentario.hbm.xml"/>
+        <mapping resource="mapeos/Direccion.hbm.xml"/>
+        <mapping resource="mapeos/Etiqueta.hbm.xml"/>
+        <mapping resource="mapeos/Localidad.hbm.xml"/>
+        <mapping resource="mapeos/Provincia.hbm.xml"/>
+        <mapping resource="mapeos/Revision.hbm.xml"/>
+        <mapping resource="mapeos/Tecnico.hbm.xml"/>
+        <mapping resource="mapeos/Ticket.hbm.xml"/>
+        <mapping resource="mapeos/Usuario.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration> 

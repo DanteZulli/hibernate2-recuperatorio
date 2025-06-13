@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="datos">
+    <class name="Categoria" table="categorias">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="descripcion" column="descripcion" type="string"/>
+        <list name="tickets" table="tickets" cascade="all">
+            <key column="categoria_id"/>
+            <one-to-many class="datos.Ticket"/>
+        </list>
+        <property name="createAt" column="create_at_categoria" type="timestamp"/>
+        <property name="updateAt" column="update_at_categoria" type="timestamp"/>
+    </class>
+</hibernate-mapping> 
