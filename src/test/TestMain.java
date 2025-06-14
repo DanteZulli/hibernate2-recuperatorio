@@ -259,7 +259,7 @@ public class TestMain {
 
         // ===================== CATEGORÍAS =====================
         Categoria categoria1 = new Categoria();
-        categoria1.setNombre("Redes");
+        categoria1.setNombre("Redes");  
         categoria1.setDescripcion("Problemas de red");
         int idCategoria1 = CategoriaABM.getInstance().alta(categoria1);
         categoria1.setId(idCategoria1);
@@ -279,6 +279,7 @@ public class TestMain {
         ticket1.setCreador(cliente1);
         ticket1.setAsignado(tecnico1);
         ticket1.setCategoria(categoria1);
+        ticket1.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
         int idTicket1 = TicketABM.getInstance().alta(ticket1);
         ticket1.setId(idTicket1);
 
@@ -290,6 +291,7 @@ public class TestMain {
         ticket2.setCreador(cliente2);
         ticket2.setAsignado(tecnico2);
         ticket2.setCategoria(categoria2);
+        ticket2.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
         int idTicket2 = TicketABM.getInstance().alta(ticket2);
         ticket2.setId(idTicket2);
 
@@ -301,6 +303,7 @@ public class TestMain {
         ticket3.setCreador(cliente1);
         ticket3.setAsignado(tecnico2);
         ticket3.setCategoria(categoria1);
+        ticket3.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
         int idTicket3 = TicketABM.getInstance().alta(ticket3);
         ticket3.setId(idTicket3);
 

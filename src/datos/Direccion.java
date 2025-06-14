@@ -97,7 +97,7 @@ public class Direccion {
                 ", calle='" + calle + '\'' +
                 ", nro='" + nro + '\'' +
                 ", codigoPostal='" + codigoPostal + '\'' +
-                ", localidad=" + localidad +
+                ", localidad=" + localidad.getNombre() +
                 ", fiscal=" + fiscal +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +

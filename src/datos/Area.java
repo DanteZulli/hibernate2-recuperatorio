@@ -1,19 +1,20 @@
 package datos;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Area {
     private int id;
     private String nombre;
-    private List<Tecnico> tecnicos;
+    private Set<Tecnico> tecnicos = new HashSet<>();
     private Timestamp createAt;
     private Timestamp updateAt;
 
     public Area() {
     }
 
-    public Area(int id, String nombre, List<Tecnico> tecnicos, Timestamp createAt, Timestamp updateAt) {
+    public Area(int id, String nombre, Set<Tecnico> tecnicos, Timestamp createAt, Timestamp updateAt) {
         this.id = id;
         this.nombre = nombre;
         this.tecnicos = tecnicos;
@@ -37,11 +38,11 @@ public class Area {
         this.nombre = nombre;
     }
 
-    public List<Tecnico> getTecnicos() {
+    public Set<Tecnico> getTecnicos() {
         return tecnicos;
     }
 
-    public void setTecnicos(List<Tecnico> tecnicos) {
+    public void setTecnicos(Set<Tecnico> tecnicos) {
         this.tecnicos = tecnicos;
     }
 

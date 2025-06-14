@@ -1,19 +1,20 @@
 package datos;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Provincia {
     private int id;
     private String nombre;
-    private List<Localidad> localidades;
+    private Set<Localidad> localidades = new HashSet<>();
     private Timestamp createAt;
     private Timestamp updateAt;
 
     public Provincia() {
     }
 
-    public Provincia(int id, String nombre, List<Localidad> localidades, Timestamp createAt, Timestamp updateAt) {
+    public Provincia(int id, String nombre, Set<Localidad> localidades, Timestamp createAt, Timestamp updateAt) {
         this.id = id;
         this.nombre = nombre;
         this.localidades = localidades;
@@ -37,11 +38,11 @@ public class Provincia {
         this.nombre = nombre;
     }
 
-    public List<Localidad> getLocalidades() {
+    public Set<Localidad> getLocalidades() {
         return localidades;
     }
 
-    public void setLocalidades(List<Localidad> localidades) {
+    public void setLocalidades(Set<Localidad> localidades) {
         this.localidades = localidades;
     }
 
@@ -66,7 +67,6 @@ public class Provincia {
         return "Provincia{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", localidades=" + localidades +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';

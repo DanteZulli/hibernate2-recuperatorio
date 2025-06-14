@@ -1,20 +1,21 @@
 package datos;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Categoria {
     private int id;
     private String nombre;
     private String descripcion;
-    private List<Ticket> tickets;
+    private Set<Ticket> tickets = new HashSet<>();
     private Timestamp createAt;
     private Timestamp updateAt;
 
     public Categoria() {
     }
 
-    public Categoria(int id, String nombre, String descripcion, List<Ticket> tickets, Timestamp createAt, Timestamp updateAt) {
+    public Categoria(int id, String nombre, String descripcion, Set<Ticket> tickets, Timestamp createAt, Timestamp updateAt) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -47,11 +48,11 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
-    public List<Ticket> getTickets() {
+    public Set<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
 
@@ -77,7 +78,7 @@ public class Categoria {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", tickets=" + tickets +
+
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';

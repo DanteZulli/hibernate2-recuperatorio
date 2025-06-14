@@ -51,7 +51,7 @@ public class ClienteDao extends Dao<Cliente> {
 		List<Cliente> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Cliente", Cliente.class).list();
+			lista = session.createQuery("from Cliente c left join fetch c.direccion d left join fetch d.localidad l left join fetch l.provincia", Cliente.class).list();
 		} finally {
 			session.close();
 		}

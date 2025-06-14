@@ -6,11 +6,10 @@
             <generator class="identity"/>
         </id>
         <property name="nombre" column="nombre" type="string"/>
-        <list name="localidades" table="localidades" cascade="all">
+        <set name="localidades" table="localidades" cascade="all">
             <key column="provincia_id"/>
-            <list-index column="orden" />
             <one-to-many class="datos.Localidad"/>
-        </list>
+        </set>
         <property name="createAt" column="create_at_provincia" type="timestamp"/>
         <property name="updateAt" column="update_at_provincia" type="timestamp"/>
     </class>

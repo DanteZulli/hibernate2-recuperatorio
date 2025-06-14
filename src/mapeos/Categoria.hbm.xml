@@ -7,11 +7,10 @@
         </id>
         <property name="nombre" column="nombre" type="string"/>
         <property name="descripcion" column="descripcion" type="string"/>
-        <list name="tickets" table="tickets" cascade="all">
+        <set name="tickets" table="tickets" cascade="all">
             <key column="categoria_id"/>
-            <list-index column="orden" />
             <one-to-many class="datos.Ticket"/>
-        </list>
+        </set>
         <property name="createAt" column="create_at_categoria" type="timestamp"/>
         <property name="updateAt" column="update_at_categoria" type="timestamp"/>
     </class>
