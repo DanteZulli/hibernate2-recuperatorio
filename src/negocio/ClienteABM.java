@@ -39,4 +39,13 @@ public class ClienteABM {
 	public void modificacion(Cliente cliente) {
 		ClienteDao.getInstance().actualizar(cliente);
 	}
+
+	// Consultas específicas
+	public List<Cliente> traerPorPlan(String plan) {
+		return ClienteDao.getInstance().traerPorPlan(plan);
+	}
+
+	public List<Cliente> traerParticulares() {
+		return ClienteDao.getInstance().traerParticulares();
+	}
 }

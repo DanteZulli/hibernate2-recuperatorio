@@ -52,4 +52,55 @@ public class UsuarioDao extends Dao<Usuario> {
 		}
 		return lista;
 	}
+
+	public List<Usuario> traerPorNombre(String nombre) throws HibernateException {
+		List<Usuario> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Usuario u where u.nombre like :nombre", Usuario.class)
+					.setParameter("nombre", "%" + nombre + "%")
+					.list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public Usuario traerPorEmail(String email) throws HibernateException {
+		Usuario objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Usuario) session.createQuery("from Usuario u where u.email = :email")
+					.setParameter("email", email)
+					.uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
+
+	public List<Usuario> traerAdministradores() throws HibernateException {
+		List<Usuario> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Usuario u where u.esAdmin = true", Usuario.class)
+					.list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public Usuario traerPorNombreUsuario(String nombreUsuario) throws HibernateException {
+		Usuario objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Usuario) session.createQuery("from Usuario u where u.nombreUsuario = :nombreUsuario")
+					.setParameter("nombreUsuario", nombreUsuario)
+					.uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
 }

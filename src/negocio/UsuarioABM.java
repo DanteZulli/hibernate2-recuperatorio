@@ -39,4 +39,21 @@ public class UsuarioABM {
 	public void modificacion(Usuario usuario) {
 		UsuarioDao.getInstance().actualizar(usuario);
 	}
+
+	// Consultas específicas
+	public List<Usuario> traerPorNombre(String nombre) {
+		return UsuarioDao.getInstance().traerPorNombre(nombre);
+	}
+
+	public Usuario traerPorEmail(String email) {
+		return UsuarioDao.getInstance().traerPorEmail(email);
+	}
+
+	public List<Usuario> traerAdministradores() {
+		return UsuarioDao.getInstance().traerAdministradores();
+	}
+
+	public Usuario traerPorNombreUsuario(String nombreUsuario) {
+		return UsuarioDao.getInstance().traerPorNombreUsuario(nombreUsuario);
+	}
 }

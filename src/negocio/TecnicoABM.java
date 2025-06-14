@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.TecnicoDao;
 import datos.Tecnico;
+import datos.Area;
 
 public class TecnicoABM {
 	private static TecnicoABM instancia = null; // Patrón Singleton
@@ -38,5 +39,14 @@ public class TecnicoABM {
 	// Modificación de Tecnico
 	public void modificacion(Tecnico tecnico) {
 		TecnicoDao.getInstance().actualizar(tecnico);
+	}
+
+	// Consultas específicas
+	public List<Tecnico> traerPorEmpresa(String empresa) {
+		return TecnicoDao.getInstance().traerPorEmpresa(empresa);
+	}
+
+	public List<Tecnico> traerPorArea(Area area) {
+		return TecnicoDao.getInstance().traerPorArea(area);
 	}
 }

@@ -57,4 +57,29 @@ public class ClienteDao extends Dao<Cliente> {
 		}
 		return lista;
 	}
+
+	public List<Cliente> traerPorPlan(String plan) throws HibernateException {
+		List<Cliente> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Cliente c where c.plan = :plan", Cliente.class)
+					.setParameter("plan", plan)
+					.list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public List<Cliente> traerParticulares() throws HibernateException {
+		List<Cliente> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Cliente c where c.particular = true", Cliente.class)
+					.list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 
 import datos.Tecnico;
+import datos.Area;
 
 public class TecnicoDao extends Dao<Tecnico> {
 	private static TecnicoDao instancia = null; // Patrón Singleton
@@ -47,6 +48,32 @@ public class TecnicoDao extends Dao<Tecnico> {
 		try {
 			iniciaOperacion();
 			lista = session.createQuery("from Tecnico", Tecnico.class).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public List<Tecnico> traerPorEmpresa(String empresa) throws HibernateException {
+		List<Tecnico> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Tecnico t where t.empresa = :empresa", Tecnico.class)
+					.setParameter("empresa", empresa)
+					.list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public List<Tecnico> traerPorArea(Area area) throws HibernateException {
+		List<Tecnico> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Tecnico t where t.area = :area", Tecnico.class)
+					.setParameter("area", area)
+					.list();
 		} finally {
 			session.close();
 		}
