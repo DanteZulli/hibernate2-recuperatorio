@@ -3,17 +3,14 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import datos.Cliente;
 
-public class ClienteDao {
-	private static Session session;
-	private Transaction tx;
+public class ClienteDao extends Dao<Cliente> {
 	private static ClienteDao instancia = null; // Patrón Singleton
 
 	protected ClienteDao() {
+		super();
 	}
 
 	public static ClienteDao getInstance() {
@@ -33,21 +30,21 @@ public class ClienteDao {
 	}
 
 	public Cliente traer(int nroCliente) {
-	    Cliente objeto = null;
-	    try {
-	        iniciaOperacion();
-	        objeto = (Cliente) session.createQuery("from Cliente c where c.nroCliente = :nroCliente")
-	                .setParameter("nroCliente", nroCliente)
-	                .uniqueResult();
+		Cliente objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Cliente) session.createQuery("from Cliente c where c.nroCliente = :nroCliente")
+					.setParameter("nroCliente", nroCliente)
+					.uniqueResult();
 
-	        // Forzar carga de relaciones para evitar LazyInitializationException
-	        if (objeto != null && objeto.getDireccion() != null && objeto.getDireccion().getLocalidad() != null) {
-	            objeto.getDireccion().getLocalidad().getNombre();
-	        }
-	    } finally {
-	        session.close();
-	    }
-	    return objeto;
+			// Forzar carga de relaciones para evitar LazyInitializationException
+			if (objeto != null && objeto.getDireccion() != null && objeto.getDireccion().getLocalidad() != null) {
+				objeto.getDireccion().getLocalidad().getNombre();
+			}
+		} finally {
+			session.close();
+		}
+		return objeto;
 	}
 
 	public List<Cliente> traer() throws HibernateException {

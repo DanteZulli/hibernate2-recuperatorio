@@ -3,17 +3,14 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import datos.Usuario;
 
-public class UsuarioDao {
-	private static Session session;
-	private Transaction tx;
+public class UsuarioDao extends Dao<Usuario> {
 	private static UsuarioDao instancia = null; // Patrón Singleton
 
 	protected UsuarioDao() {
+		super();
 	}
 
 	public static UsuarioDao getInstance() {
@@ -37,8 +34,8 @@ public class UsuarioDao {
 		try {
 			iniciaOperacion();
 			objeto = (Usuario) session.createQuery("from Usuario u where u.id=:idUsuario")
-						.setParameter("idUsuario", idUsuario)
-						.uniqueResult();
+					.setParameter("idUsuario", idUsuario)
+					.uniqueResult();
 		} finally {
 			session.close();
 		}

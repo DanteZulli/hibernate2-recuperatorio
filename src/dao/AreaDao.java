@@ -3,17 +3,14 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import datos.Area;
 
-public class AreaDao {
-	private static Session session;
-	private Transaction tx;
+public class AreaDao extends Dao<Area> {
 	private static AreaDao instancia = null; // Patrón Singleton
 
 	protected AreaDao() {
+		super();
 	}
 
 	public static AreaDao getInstance() {

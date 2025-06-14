@@ -24,4 +24,19 @@ public class LocalidadABM {
 	public List<Localidad> traer() {
 		return LocalidadDao.getInstance().traer();
 	}
+
+	// Alta de Localidad
+	public int alta(Localidad localidad) {
+		return LocalidadDao.getInstance().agregar(localidad);
+	}
+
+	// Baja de Localidad
+	public void baja(Localidad localidad) {
+		LocalidadDao.getInstance().eliminar(localidad);
+	}
+
+	// Modificación de Localidad
+	public void modificacion(Localidad localidad) {
+		LocalidadDao.getInstance().actualizar(localidad);
+	}
 }

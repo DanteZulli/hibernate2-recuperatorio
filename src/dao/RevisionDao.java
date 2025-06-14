@@ -3,17 +3,14 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import datos.Revision;
 
-public class RevisionDao {
-	private static Session session;
-	private Transaction tx;
+public class RevisionDao extends Dao<Revision> {
 	private static RevisionDao instancia = null; // Patrón Singleton
 
 	protected RevisionDao() {
+		super();
 	}
 
 	public static RevisionDao getInstance() {

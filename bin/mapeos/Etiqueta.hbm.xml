@@ -14,7 +14,7 @@
         <property name="updateAt" column="update_at_etiqueta" type="timestamp"/>
 
         <!-- Relación muchos a muchos con Ticket -->
-        <set name="tickets" table="tickets_etiquetas" cascade="all" lazy="true">
+        <set name="tickets" table="ticket_etiqueta" cascade="all" lazy="true">
             <key column="etiqueta_id"/>
             <many-to-many class="datos.Ticket" column="ticket_id"/>
         </set>

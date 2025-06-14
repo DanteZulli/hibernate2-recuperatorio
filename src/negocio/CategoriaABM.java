@@ -24,4 +24,19 @@ public class CategoriaABM {
 	public List<Categoria> traer() {
 		return CategoriaDao.getInstance().traer();
 	}
+
+	// Alta de Categoria
+	public int alta(Categoria categoria) {
+		return CategoriaDao.getInstance().agregar(categoria);
+	}
+
+	// Baja de Categoria
+	public void baja(Categoria categoria) {
+		CategoriaDao.getInstance().eliminar(categoria);
+	}
+
+	// Modificación de Categoria
+	public void modificacion(Categoria categoria) {
+		CategoriaDao.getInstance().actualizar(categoria);
+	}
 }

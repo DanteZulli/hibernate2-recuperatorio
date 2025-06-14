@@ -24,4 +24,19 @@ public class AreaABM {
 	public List<Area> traer() {
 		return AreaDao.getInstance().traer();
 	}
+
+	// Alta de Area
+	public int alta(Area area) {
+		return AreaDao.getInstance().agregar(area);
+	}
+
+	// Baja de Area
+	public void baja(Area area) {
+		AreaDao.getInstance().eliminar(area);
+	}
+
+	// Modificación de Area
+	public void modificacion(Area area) {
+		AreaDao.getInstance().actualizar(area);
+	}
 }

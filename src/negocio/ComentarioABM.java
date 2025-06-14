@@ -24,4 +24,19 @@ public class ComentarioABM {
 	public List<Comentario> traer() {
 		return ComentarioDao.getInstance().traer();
 	}
+
+	// Alta de Comentario
+	public int alta(Comentario comentario) {
+		return ComentarioDao.getInstance().agregar(comentario);
+	}
+
+	// Baja de Comentario
+	public void baja(Comentario comentario) {
+		ComentarioDao.getInstance().eliminar(comentario);
+	}
+
+	// Modificación de Comentario
+	public void modificacion(Comentario comentario) {
+		ComentarioDao.getInstance().actualizar(comentario);
+	}
 }

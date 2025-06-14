@@ -24,4 +24,19 @@ public class TicketABM {
 	public List<Ticket> traer() {
 		return TicketDao.getInstance().traer();
 	}
+
+	// Alta de Ticket
+	public int alta(Ticket ticket) {
+		return TicketDao.getInstance().agregar(ticket);
+	}
+
+	// Baja de Ticket
+	public void baja(Ticket ticket) {
+		TicketDao.getInstance().eliminar(ticket);
+	}
+
+	// Modificación de Ticket
+	public void modificacion(Ticket ticket) {
+		TicketDao.getInstance().actualizar(ticket);
+	}
 }

@@ -24,4 +24,19 @@ public class ClienteABM {
 	public List<Cliente> traer() {
 		return ClienteDao.getInstance().traer();
 	}
+
+	// Alta de Cliente
+	public int alta(Cliente cliente) {
+		return ClienteDao.getInstance().agregar(cliente);
+	}
+
+	// Baja de Cliente
+	public void baja(Cliente cliente) {
+		ClienteDao.getInstance().eliminar(cliente);
+	}
+
+	// Modificación de Cliente
+	public void modificacion(Cliente cliente) {
+		ClienteDao.getInstance().actualizar(cliente);
+	}
 }

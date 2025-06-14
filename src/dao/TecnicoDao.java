@@ -3,17 +3,14 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import datos.Tecnico;
 
-public class TecnicoDao {
-	private static Session session;
-	private Transaction tx;
+public class TecnicoDao extends Dao<Tecnico> {
 	private static TecnicoDao instancia = null; // Patrón Singleton
 
 	protected TecnicoDao() {
+		super();
 	}
 
 	public static TecnicoDao getInstance() {
@@ -33,16 +30,16 @@ public class TecnicoDao {
 	}
 
 	public Tecnico traer(int idUsuario) {
-	    Tecnico objeto = null;
-	    try {
-	        iniciaOperacion();
-	        objeto = (Tecnico) session.createQuery("from Tecnico t where t.id = :idUsuario")
-	                    .setParameter("idUsuario", idUsuario)
-	                    .uniqueResult();
-	    } finally {
-	        session.close();
-	    }
-	    return objeto;
+		Tecnico objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Tecnico) session.createQuery("from Tecnico t where t.id = :idUsuario")
+					.setParameter("idUsuario", idUsuario)
+					.uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
 	}
 
 	public List<Tecnico> traer() throws HibernateException {

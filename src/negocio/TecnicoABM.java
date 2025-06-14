@@ -24,4 +24,19 @@ public class TecnicoABM {
 	public List<Tecnico> traer() {
 		return TecnicoDao.getInstance().traer();
 	}
+
+	// Alta de Tecnico
+	public int alta(Tecnico tecnico) {
+		return TecnicoDao.getInstance().agregar(tecnico);
+	}
+
+	// Baja de Tecnico
+	public void baja(Tecnico tecnico) {
+		TecnicoDao.getInstance().eliminar(tecnico);
+	}
+
+	// Modificación de Tecnico
+	public void modificacion(Tecnico tecnico) {
+		TecnicoDao.getInstance().actualizar(tecnico);
+	}
 }

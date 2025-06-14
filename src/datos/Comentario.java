@@ -1,6 +1,5 @@
 package datos;
 
-import java.time.LocalDateTime;
 import java.sql.Timestamp;
 
 public class Comentario {

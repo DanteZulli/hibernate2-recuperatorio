@@ -24,4 +24,19 @@ public class RevisionABM {
 	public List<Revision> traer() {
 		return RevisionDao.getInstance().traer();
 	}
+
+	// Alta de Revision
+	public int alta(Revision revision) {
+		return RevisionDao.getInstance().agregar(revision);
+	}
+
+	// Baja de Revision
+	public void baja(Revision revision) {
+		RevisionDao.getInstance().eliminar(revision);
+	}
+
+	// Modificación de Revision
+	public void modificacion(Revision revision) {
+		RevisionDao.getInstance().actualizar(revision);
+	}
 }

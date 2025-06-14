@@ -24,4 +24,19 @@ public class ProvinciaABM {
 	public List<Provincia> traer() {
 		return ProvinciaDao.getInstance().traer();
 	}
+
+	// Alta de Provincia
+	public int alta(Provincia provincia) {
+		return ProvinciaDao.getInstance().agregar(provincia);
+	}
+
+	// Baja de Provincia
+	public void baja(Provincia provincia) {
+		ProvinciaDao.getInstance().eliminar(provincia);
+	}
+
+	// Modificación de Provincia
+	public void modificacion(Provincia provincia) {
+		ProvinciaDao.getInstance().actualizar(provincia);
+	}
 }

@@ -24,4 +24,19 @@ public class DireccionABM {
 	public List<Direccion> traer() {
 		return DireccionDao.getInstance().traer();
 	}
+
+	// Alta de Direccion
+	public int alta(Direccion direccion) {
+		return DireccionDao.getInstance().agregar(direccion);
+	}
+
+	// Baja de Direccion
+	public void baja(Direccion direccion) {
+		DireccionDao.getInstance().eliminar(direccion);
+	}
+
+	// Modificación de Direccion
+	public void modificacion(Direccion direccion) {
+		DireccionDao.getInstance().actualizar(direccion);
+	}
 }

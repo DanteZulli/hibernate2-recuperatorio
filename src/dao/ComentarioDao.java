@@ -8,12 +8,11 @@ import org.hibernate.Transaction;
 
 import datos.Comentario;
 
-public class ComentarioDao {
-	private static Session session;
-	private Transaction tx;
+public class ComentarioDao extends Dao<Comentario> {
 	private static ComentarioDao instancia = null; // Patrón Singleton
 
 	protected ComentarioDao() {
+		super();	
 	}
 
 	public static ComentarioDao getInstance() {
