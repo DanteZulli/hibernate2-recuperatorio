@@ -10,6 +10,17 @@ public class Area {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Area() {
+    }
+
+    public Area(int id, String nombre, List<Tecnico> tecnicos, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tecnicos = tecnicos;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

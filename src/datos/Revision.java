@@ -15,6 +15,22 @@ public class Revision {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Revision() {
+    }
+
+    public Revision(int id, LocalDateTime fechaCambio, String campoModificado, String valorAnterior, String valorNuevo, String observaciones, Ticket ticket, Usuario usuarioModificacion, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.fechaCambio = fechaCambio;
+        this.campoModificado = campoModificado;
+        this.valorAnterior = valorAnterior;
+        this.valorNuevo = valorNuevo;
+        this.observaciones = observaciones;
+        this.ticket = ticket;
+        this.usuarioModificacion = usuarioModificacion;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

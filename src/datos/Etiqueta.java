@@ -10,6 +10,17 @@ public class Etiqueta {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Etiqueta() {
+    }
+
+    public Etiqueta(int id, String nombre, List<Ticket> tickets, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;   
+        this.tickets = tickets;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

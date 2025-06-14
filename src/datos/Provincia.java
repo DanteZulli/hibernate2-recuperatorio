@@ -10,6 +10,17 @@ public class Provincia {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Provincia() {
+    }
+
+    public Provincia(int id, String nombre, List<Localidad> localidades, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;
+        this.localidades = localidades;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

@@ -21,6 +21,27 @@ public class Ticket {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Ticket() {
+    }
+
+    public Ticket(int id, String titulo, String descripcion, String estado, String prioridad, Timestamp fechaCreacion, Timestamp fechaResolucion, Usuario creador, Usuario asignado, Categoria categoria, Set<Etiqueta> etiquetas, Set<Comentario> comentarios, Set<Revision> revisiones, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.prioridad = prioridad;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaResolucion = fechaResolucion;
+        this.creador = creador;
+        this.asignado = asignado;
+        this.categoria = categoria;
+        this.etiquetas = etiquetas;
+        this.comentarios = comentarios;
+        this.revisiones = revisiones;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

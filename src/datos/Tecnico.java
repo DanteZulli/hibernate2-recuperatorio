@@ -5,6 +5,15 @@ public class Tecnico extends Usuario {
     private String empresa;
     private Area area;
 
+    public Tecnico() {
+    }
+
+    public Tecnico(String nroContacto, String empresa, Area area) {
+        this.nroContacto = nroContacto;
+        this.empresa = empresa;
+        this.area = area;
+    }
+
     public String getNroContacto() {
         return nroContacto;
     }

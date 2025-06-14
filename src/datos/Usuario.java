@@ -12,6 +12,20 @@ public abstract class Usuario {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Usuario() {
+    }
+
+    public Usuario(int id, String nombre, String nombreUsuario, String contrasenia, String email, boolean esAdmin, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+        this.email = email;
+        this.esAdmin = esAdmin;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

@@ -6,6 +6,16 @@ public class Cliente extends Usuario {
     private boolean particular;
     private Direccion direccion;
 
+    public Cliente() {
+    }
+
+    public Cliente(int nroCliente, String plan, boolean particular, Direccion direccion) {
+        this.nroCliente = nroCliente;
+        this.plan = plan;
+        this.particular = particular;
+        this.direccion = direccion;
+    }
+
     public int getNroCliente() {
         return nroCliente;
     }

@@ -11,6 +11,18 @@ public class Categoria {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Categoria() {
+    }
+
+    public Categoria(int id, String nombre, String descripcion, List<Ticket> tickets, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tickets = tickets;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

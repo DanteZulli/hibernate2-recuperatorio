@@ -12,6 +12,19 @@ public class Comentario {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Comentario() {
+    }
+
+    public Comentario(int id, String mensaje, Timestamp fecha, Ticket ticket, Usuario usuario, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.mensaje = mensaje;
+        this.fecha = fecha;
+        this.ticket = ticket;
+        this.usuario = usuario;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

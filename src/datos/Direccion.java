@@ -12,6 +12,20 @@ public class Direccion {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Direccion() {
+    }
+
+    public Direccion(int id, String calle, String nro, String codigoPostal, Localidad localidad, boolean fiscal, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.calle = calle;
+        this.nro = nro;
+        this.codigoPostal = codigoPostal;
+        this.localidad = localidad;
+        this.fiscal = fiscal;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }

@@ -9,6 +9,17 @@ public class Localidad {
     private Timestamp createAt;
     private Timestamp updateAt;
 
+    public Localidad() {
+    }
+
+    public Localidad(int id, String nombre, Provincia provincia, Timestamp createAt, Timestamp updateAt) {
+        this.id = id;
+        this.nombre = nombre;   
+        this.provincia = provincia;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
     public int getId() {
         return id;
     }
