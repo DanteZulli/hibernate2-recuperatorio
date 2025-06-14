@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.grupo25.datos">
+    <class name="Ticket" table="tickets">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="titulo" column="titulo" type="string"/>
+        <property name="descripcion" column="descripcion" type="string"/>
+        <property name="estado" column="estado" type="string"/>
+        <property name="prioridad" column="prioridad" type="string"/>
+        <property name="fechaCreacion" column="fecha_creacion" type="timestamp"/>
+        <property name="fechaResolucion" column="fecha_resolucion" type="timestamp"/>
+        <many-to-one name="creador" class="com.grupo25.datos.Usuario" column="creador_id" not-null="true"/>
+        <many-to-one name="asignado" class="com.grupo25.datos.Usuario" column="asignado_id"/>
+        <many-to-one name="categoria" class="com.grupo25.datos.Categoria" column="categoria_id"/>
+        <set name="etiquetas" table="ticket_etiqueta" cascade="all">
+            <key column="ticket_id"/>
+            <many-to-many class="com.grupo25.datos.Etiqueta" column="etiqueta_id"/>
+        </set>
+        <list name="comentarios" table="comentarios" cascade="all">
+            <key column="ticket_id"/>
+            <list-index column="orden" />
+            <one-to-many class="com.grupo25.datos.Comentario"/>
+        </list>
+        <list name="revisiones" table="revisiones" cascade="all">
+            <key column="ticket_id"/>
+            <list-index column="orden" />
+            <one-to-many class="com.grupo25.datos.Revision"/>
+        </list>
+        <property name="createAt" column="create_at_ticket" type="timestamp"/>
+        <property name="updateAt" column="update_at_ticket" type="timestamp"/>
+    </class>
+</hibernate-mapping> 

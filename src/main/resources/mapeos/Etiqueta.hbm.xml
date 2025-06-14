@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.grupo25.datos">
+
+    <class name="Etiqueta" table="etiquetas">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="createAt" column="create_at_etiqueta" type="timestamp"/>
+        <property name="updateAt" column="update_at_etiqueta" type="timestamp"/>
+
+        <!-- Relación muchos a muchos con Ticket -->
+        <set name="tickets" table="tickets_etiquetas" cascade="all" lazy="true">
+            <key column="etiqueta_id"/>
+            <many-to-many class="com.grupo25.datos.Ticket" column="ticket_id"/>
+        </set>
+    </class>
+
+</hibernate-mapping>
