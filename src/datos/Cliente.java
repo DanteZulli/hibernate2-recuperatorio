@@ -44,7 +44,7 @@ public class Cliente extends Usuario {
                 "nroCliente=" + nroCliente +
                 ", plan='" + plan + '\'' +
                 ", particular=" + particular +
-                ", direccion=" + direccion +
+               /* ", direccion=" + direccion +*/
                 '}';
     }
 }

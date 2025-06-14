@@ -8,7 +8,8 @@
         <property name="calle" column="calle" type="string"/>
         <property name="nro" column="nro" type="string"/>
         <property name="codigoPostal" column="codigo_postal" type="string"/>
-        <many-to-one name="localidad" class="datos.Localidad" column="localidad_id" not-null="true"/>
+        <many-to-one name="localidad" class="datos.Localidad" column="localidad_id" not-null="true" fetch="join" lazy="false"/>
+        
         <property name="fiscal" column="fiscal" type="boolean"/>
         <property name="createAt" column="create_at_direccion" type="timestamp"/>
         <property name="updateAt" column="update_at_direccion" type="timestamp"/>

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Comentario {
     private int id;
     private String mensaje;
-    private LocalDateTime fecha;
+    private Timestamp  fecha;
     private Ticket ticket;
     private Usuario usuario;
     private Timestamp createAt;
@@ -28,11 +28,11 @@ public class Comentario {
         this.mensaje = mensaje;
     }
 
-    public LocalDateTime getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

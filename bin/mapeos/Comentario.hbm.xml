@@ -7,8 +7,8 @@
         </id>
         <property name="mensaje" column="mensaje" type="string"/>
         <property name="fecha" column="fecha" type="timestamp"/>
-        <many-to-one name="ticket" class="datos.Ticket" column="ticket_id" not-null="true"/>
-        <many-to-one name="usuario" class="datos.Usuario" column="usuario_id" not-null="true"/>
+        <many-to-one name="ticket" class="datos.Ticket" column="ticket_id" not-null="true" fetch="join" lazy="false" />
+        <many-to-one name="usuario" class="datos.Usuario" column="usuario_id" not-null="true" fetch="join" lazy="false" />
         <property name="createAt" column="create_at_comentario" type="timestamp"/>
         <property name="updateAt" column="update_at_comentario" type="timestamp"/>
     </class>

@@ -1,27 +1,21 @@
 package test;
 
 import java.util.List;
-
 import datos.Cliente;
-import datos.Tecnico;
-import datos.Usuario;
 import negocio.ClienteABM;
-import negocio.UsuarioABM;
 
-
-public class TestUsuario {
-
+public class ClienteTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			//Usuario c= UsuarioABM.getInstance().traer(3);
+			Cliente c= ClienteABM.getInstance().traer(1001);
+			System.out.println(c);
 			
+			/*List<Cliente> lista = ClienteABM.getInstance().traer();
 			
-			List<Usuario> lista = UsuarioABM.getInstance().traer();
-			
-			 for (Usuario u : lista) {
+			 for (Cliente u : lista) {
 			        System.out.println(u);
-			    }
+			    }*/
 			
 			//System.out.println(c.toString());
 		} catch (Exception e) {
@@ -30,4 +24,5 @@ public class TestUsuario {
 		}
 
 	}
+
 }

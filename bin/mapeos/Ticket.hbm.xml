@@ -18,16 +18,16 @@
             <key column="ticket_id"/>
             <many-to-many class="datos.Etiqueta" column="etiqueta_id"/>
         </set>
-        <list name="comentarios" table="comentarios" cascade="all">
+        <set name="comentarios" table="comentarios" cascade="all">
             <key column="ticket_id"/>
-            <list-index column="orden" />
+            
             <one-to-many class="datos.Comentario"/>
-        </list>
-        <list name="revisiones" table="revisiones" cascade="all">
+        </set>
+        <set name="revisiones" table="revisiones" cascade="all">
             <key column="ticket_id"/>
-            <list-index column="orden" />
+            
             <one-to-many class="datos.Revision"/>
-        </list>
+        </set>
         <property name="createAt" column="create_at_ticket" type="timestamp"/>
         <property name="updateAt" column="update_at_ticket" type="timestamp"/>
     </class>

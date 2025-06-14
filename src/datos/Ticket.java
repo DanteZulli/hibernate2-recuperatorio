@@ -1,8 +1,8 @@
 package datos;
 
-import java.time.LocalDateTime;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Ticket {
     private int id;
@@ -10,14 +10,14 @@ public class Ticket {
     private String descripcion;
     private String estado;
     private String prioridad;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaResolucion;
+    private Timestamp fechaCreacion;
+    private Timestamp fechaResolucion;
     private Usuario creador;
     private Usuario asignado;
     private Categoria categoria;
-    private List<Etiqueta> etiquetas;
-    private List<Comentario> comentarios;
-    private List<Revision> revisiones;
+    private Set<Etiqueta> etiquetas = new HashSet<>();
+    private Set<Comentario> comentarios = new HashSet<>();
+    private Set<Revision> revisiones = new HashSet<>();
     private Timestamp createAt;
     private Timestamp updateAt;
 
@@ -61,19 +61,19 @@ public class Ticket {
         this.prioridad = prioridad;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public Timestamp getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(Timestamp fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDateTime getFechaResolucion() {
+    public Timestamp getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public void setFechaResolucion(LocalDateTime fechaResolucion) {
+    public void setFechaResolucion(Timestamp fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 
@@ -101,27 +101,27 @@ public class Ticket {
         this.categoria = categoria;
     }
 
-    public List<Etiqueta> getEtiquetas() {
+    public Set<Etiqueta> getEtiquetas() {
         return etiquetas;
     }
 
-    public void setEtiquetas(List<Etiqueta> etiquetas) {
+    public void setEtiquetas(Set<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
     }
 
-    public List<Comentario> getComentarios() {
+    public Set<Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
+    public void setComentarios(Set<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 
-    public List<Revision> getRevisiones() {
+    public Set<Revision> getRevisiones() {
         return revisiones;
     }
 
-    public void setRevisiones(List<Revision> revisiones) {
+    public void setRevisiones(Set<Revision> revisiones) {
         this.revisiones = revisiones;
     }
 
@@ -151,14 +151,14 @@ public class Ticket {
                 ", prioridad='" + prioridad + '\'' +
                 ", fechaCreacion=" + fechaCreacion +
                 ", fechaResolucion=" + fechaResolucion +
-                ", creador=" + creador +
-                ", asignado=" + asignado +
-                ", categoria=" + categoria +
-                ", etiquetas=" + etiquetas +
-                ", comentarios=" + comentarios +
-                ", revisiones=" + revisiones +
+                ", creadorId=" + (creador != null ? creador.getId() : "null") +
+                ", asignadoId=" + (asignado != null ? asignado.getId() : "null") +
+                ", categoriaId=" + (categoria != null ? categoria.getId() : "null") +
+                // No accedes a etiquetas, comentarios o revisiones para evitar LazyInitializationException
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';
     }
+
+
 }
