@@ -55,7 +55,7 @@ public class Area {
         return "Area{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", tecnicos=" + tecnicos +
+                /*", tecnicos=" + tecnicos +*/
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';

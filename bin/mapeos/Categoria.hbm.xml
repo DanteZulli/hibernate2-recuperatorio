@@ -9,6 +9,7 @@
         <property name="descripcion" column="descripcion" type="string"/>
         <list name="tickets" table="tickets" cascade="all">
             <key column="categoria_id"/>
+            <list-index column="orden" />
             <one-to-many class="datos.Ticket"/>
         </list>
         <property name="createAt" column="create_at_categoria" type="timestamp"/>

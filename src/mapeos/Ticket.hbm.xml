@@ -20,10 +20,12 @@
         </set>
         <list name="comentarios" table="comentarios" cascade="all">
             <key column="ticket_id"/>
+            <list-index column="orden" />
             <one-to-many class="datos.Comentario"/>
         </list>
         <list name="revisiones" table="revisiones" cascade="all">
             <key column="ticket_id"/>
+            <list-index column="orden" />
             <one-to-many class="datos.Revision"/>
         </list>
         <property name="createAt" column="create_at_ticket" type="timestamp"/>

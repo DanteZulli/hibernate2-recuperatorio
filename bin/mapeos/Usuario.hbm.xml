@@ -1,22 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="datos">
-    <class name="Usuario" table="usuarios" abstract="true">
-        <id name="id" column="id" type="int">
-            <generator class="identity"/>
-        </id>
-        <property name="nombre" column="nombre" type="string"/>
-        <property name="nombreUsuario" column="nombre_usuario" type="string"/>
-        <property name="contrasenia" column="contrasenia" type="string"/>
-        <property name="email" column="email" type="string"/>
-        <property name="esAdmin" column="es_admin" type="boolean"/>
-        <property name="createAt" column="create_at_usuario" type="timestamp"/>
-        <property name="updateAt" column="update_at_usuario" type="timestamp"/>
-        <joined-subclass name="datos.Cliente" table="clientes">
-            <key column="usuario_id"/>
-        </joined-subclass>
-        <joined-subclass name="datos.Tecnico" table="tecnicos">
-            <key column="usuario_id"/>
-        </joined-subclass>
-    </class>
+	<class name="Usuario" table="usuarios" abstract="true">
+		<id name="id" column="id" type="int">
+			<generator class="identity" />
+		</id>
+		<property name="nombre" column="nombre" type="string" />
+		<property name="nombreUsuario" column="nombre_usuario" type="string" />
+		<property name="contrasenia" column="contrasenia" type="string" />
+		<property name="email" column="email" type="string" />
+		<property name="esAdmin" column="es_admin" type="boolean" />
+		<property name="createAt" column="create_at_usuario" type="timestamp" />
+		<property name="updateAt" column="update_at_usuario" type="timestamp" />
+		<joined-subclass name="datos.Cliente" table="clientes">
+			<key column="usuario_id" />
+		</joined-subclass>
+		<joined-subclass name="datos.Tecnico" table="tecnicos">
+			<key column="usuario_id" />
+
+			<property name="nroContacto" column="nro_contacto" type="string" />
+			<property name="empresa" column="empresa" type="string" />
+
+			<!-- Relación con Area -->
+			<many-to-one name="area" class="datos.Area" column="area_id" fetch="join" lazy="false" />
+		</joined-subclass>
+	</class>
 </hibernate-mapping> 
