@@ -51,10 +51,10 @@ public class Cliente extends Usuario {
     @Override
     public String toString() {
         return "Cliente{" +
-                "nroCliente=" + nroCliente +
+                super.toString() +
+                ", nroCliente=" + nroCliente +
                 ", plan='" + plan + '\'' +
                 ", particular=" + particular +
-               /* ", direccion=" + direccion +*/
                 '}';
     }
 }
