@@ -1,8 +1,11 @@
 package negocio;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import dao.TicketDao;
 import dao.UsuarioDao;
+import datos.Ticket;
 import datos.Usuario;
 
 public class UsuarioABM {
@@ -55,5 +58,25 @@ public class UsuarioABM {
 
 	public Usuario traerPorNombreUsuario(String nombreUsuario) {
 		return UsuarioDao.getInstance().traerPorNombreUsuario(nombreUsuario);
+	}
+	
+	public List<Usuario> obtenerUsuarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
+	    List<Usuario> usuario = UsuarioDao.getInstance().obtenerUsuarioPorFechas(fechaInicio, fechaFin);
+
+	    if (usuario == null || usuario.isEmpty()) {
+	        throw new Exception("No se encontraron usuarios en el intervalo de fechas especificado.");
+	    }
+
+	    return usuario;
+	}
+	
+	public List<Usuario> obtenerUsuarioPorFechaYNombre(Timestamp fecha, String nombre) throws Exception {
+	    List<Usuario> usuario = UsuarioDao.getInstance().buscarPorFechaYNombre(fecha, nombre);
+
+	    if (usuario == null || usuario.isEmpty()) {
+	        throw new Exception("No se encontraron usuarios para la fecha y nombre especificados.");
+	    }
+
+	    return usuario;
 	}
 }

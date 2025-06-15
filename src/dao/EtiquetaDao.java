@@ -1,8 +1,11 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import datos.Etiqueta;
 
@@ -50,5 +53,27 @@ public class EtiquetaDao extends Dao<Etiqueta> {
 			session.close();
 		}
 		return lista;
+	}
+	
+	public List<Etiqueta> obtenerEtiquetasPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+	    List<Etiqueta> etiquetas = null;
+
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+
+	        // Usamos la clase Etiqueta y el atributo createAt
+	        String hql = "FROM Etiqueta e WHERE e.createAt BETWEEN :fechaInicio AND :fechaFin";
+	        Query<Etiqueta> query = session.createQuery(hql, Etiqueta.class);
+	        query.setParameter("fechaInicio", fechaInicio);
+	        query.setParameter("fechaFin", fechaFin);
+
+	        etiquetas = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return etiquetas;
 	}
 }

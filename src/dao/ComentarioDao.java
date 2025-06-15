@@ -1,8 +1,11 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import datos.Comentario;
 
@@ -50,5 +53,28 @@ public class ComentarioDao extends Dao<Comentario> {
 			session.close();
 		}
 		return lista;
+	}
+	
+	
+	public List<Comentario> obtenerComentariosPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+	    List<Comentario> comentarios = null;
+
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+
+	        // Usamos la clase Comentario y el atributo createAt
+	        String hql = "FROM Comentario c WHERE c.createAt BETWEEN :fechaInicio AND :fechaFin";
+	        Query<Comentario> query = session.createQuery(hql, Comentario.class);
+	        query.setParameter("fechaInicio", fechaInicio);
+	        query.setParameter("fechaFin", fechaFin);
+
+	        comentarios = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return comentarios;
 	}
 }

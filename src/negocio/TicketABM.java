@@ -1,5 +1,6 @@
 package negocio;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import dao.TicketDao;
@@ -39,4 +40,26 @@ public class TicketABM {
 	public void modificacion(Ticket ticket) {
 		TicketDao.getInstance().actualizar(ticket);
 	}
+	
+	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
+	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechas(fechaInicio, fechaFin);
+
+	    if (tickets == null || tickets.isEmpty()) {
+	        throw new Exception("No se encontraron tickets en el intervalo de fechas especificado.");
+	    }
+
+	    return tickets;
+	}
+	
+		public List<Ticket> obtenerTicketsPorFechaYEstado(Timestamp fecha, String estado) throws Exception {
+	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechaYEstado(fecha, estado);
+
+	    if (tickets == null || tickets.isEmpty()) {
+	        throw new Exception("No se encontraron tickets para la fecha y estado especificados.");
+	    }
+
+	    return tickets;
+	}
+
+	
 }

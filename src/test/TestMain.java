@@ -4,6 +4,10 @@ import datos.Usuario;
 import datos.Cliente;
 import datos.Tecnico;
 import datos.Ticket;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import datos.Area;
 import datos.Categoria;
 import datos.Comentario;
@@ -315,5 +319,31 @@ public class TestMain {
         // Baja de ticket
         TicketABM.getInstance().baja(ticket3);
         System.out.println("Ticket eliminado: " + ticket3);
+        
+        /*//Crear comentarios
+        Comentario com = new Comentario();
+        com.setMensaje("Corte general");
+        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setTicket(ticket3);
+        com.setUsuario(cliente1);
+        ComentarioABM.getInstance().alta(com);
+        
+        Comentario com2 = new Comentario();
+        com.setMensaje("Es la impresora 2");
+        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setTicket(ticket2);
+        com.setUsuario(cliente2);
+        ComentarioABM.getInstance().alta(com2);
+        
+        Comentario com3 = new Comentario();
+        com.setMensaje("Corte generalizado de la red");
+        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        com.setTicket(ticket1);
+        com.setUsuario(cliente1);
+        ComentarioABM.getInstance().alta(com3);*/
+        
     }
 }
