@@ -1,5 +1,143 @@
 # 🛠️ Sistema de Gestión de Tickets - Grupo 25 (OBJ2) - Hibernate Nivel 2 (Recuperatorio)
 
+## 📐 Diagrama de Clases (Mermaid)
+
+A continuación se muestra el diagrama de clases principal del dominio del sistema, generado a partir de las clases en `src/datos` y sus relaciones según los mapeos de Hibernate en `src/mapeos`
+
+```mermaid
+classDiagram
+    %% Clases principales del dominio con visibilidad y multiplicidad
+    class Usuario {
+        +int id
+        +String nombre
+        +String nombreUsuario
+        -String contrasenia
+        +String email
+        +boolean esAdmin
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Cliente {
+        +int nroCliente
+        +String plan
+        +boolean particular
+        +Direccion direccion
+    }
+    class Tecnico {
+        +String nroContacto
+        +String empresa
+        +Area area
+    }
+    class Direccion {
+        +int id
+        +String calle
+        +String nro
+        +String codigoPostal
+        +Localidad localidad
+        +boolean fiscal
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Localidad {
+        +int id
+        +String nombre
+        +Provincia provincia
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Provincia {
+        +int id
+        +String nombre
+        +Set~Localidad~ localidades
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Area {
+        +int id
+        +String nombre
+        +Set~Tecnico~ tecnicos
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Ticket {
+        +int id
+        +String titulo
+        +String descripcion
+        +String estado
+        +String prioridad
+        +Timestamp fechaCreacion
+        +Timestamp fechaResolucion
+        +Usuario creador
+        +Usuario asignado
+        +Categoria categoria
+        +Set~Etiqueta~ etiquetas
+        +Set~Comentario~ comentarios
+        +Set~Revision~ revisiones
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Categoria {
+        +int id
+        +String nombre
+        +String descripcion
+        +Set~Ticket~ tickets
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Etiqueta {
+        +int id
+        +String nombre
+        +List~Ticket~ tickets
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Comentario {
+        +int id
+        +String mensaje
+        +Timestamp fecha
+        +Ticket ticket
+        +Usuario usuario
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+    class Revision {
+        +int id
+        +LocalDateTime fechaCambio
+        +String campoModificado
+        +String valorAnterior
+        +String valorNuevo
+        +String observaciones
+        +Ticket ticket
+        +Usuario usuarioModificacion
+        +Timestamp createAt
+        +Timestamp updateAt
+    }
+
+    %% Herencia
+    Usuario <|-- Cliente
+    Usuario <|-- Tecnico
+
+    %% Relaciones con multiplicidad
+    Cliente "1" --> "1" Direccion : tiene
+    Direccion "*" --> "1" Localidad : pertenece a
+    Localidad "*" --> "1" Provincia : pertenece a
+    Provincia "1" --> "*" Localidad : contiene
+    Tecnico "*" --> "1" Area : pertenece a
+    Area "1" --> "*" Tecnico : contiene
+    Ticket "*" --> "1" Usuario : creador
+    Ticket "*" --> "0..1" Usuario : asignado
+    Ticket "*" --> "1" Categoria : pertenece a
+    Ticket "*" --> "*" Etiqueta : tiene
+    Ticket "1" --> "*" Comentario : tiene
+    Ticket "1" --> "*" Revision : tiene
+    Categoria "1" --> "*" Ticket : contiene
+    Etiqueta "*" --> "*" Ticket : etiqueta
+    Comentario "*" --> "1" Ticket : sobre
+    Comentario "*" --> "1" Usuario : escrito por
+    Revision "*" --> "1" Ticket : sobre
+    Revision "*" --> "1" Usuario : modificado por
+```
+
 ## 📋 Requisitos Previos
 
 - Java JDK 12
