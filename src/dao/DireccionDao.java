@@ -51,4 +51,16 @@ public class DireccionDao extends Dao<Direccion> {
 		}
 		return lista;
 	}
+
+	// Nuevo método de consulta
+	public List<Direccion> traerFiscales() throws HibernateException {
+		List<Direccion> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Direccion d where d.fiscal=true", Direccion.class).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
 }

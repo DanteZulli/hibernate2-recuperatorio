@@ -39,4 +39,9 @@ public class CategoriaABM {
 	public void modificacion(Categoria categoria) {
 		CategoriaDao.getInstance().actualizar(categoria);
 	}
+
+	// Nuevo método de consulta
+	public List<Categoria> traerPorNombre(String nombre) {
+		return CategoriaDao.getInstance().traerPorNombre(nombre);
+	}
 }

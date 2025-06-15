@@ -14,11 +14,13 @@ public class TestConsultasClase {
         for (Usuario u : usuariosPorNombre) {
             System.out.println("LOG: " + u);
         }
-
-        // 2. Traer usuario por email
-        System.out.println("\n2. Usuario con email 'juan@mail.com':");
-        Usuario usuarioPorEmail = UsuarioABM.getInstance().traerPorEmail("juan@mail.com");
-        System.out.println("LOG: " + usuarioPorEmail);
+        
+        // 2. Traer tickets por prioridad
+        System.out.println("\n2. Tickets por Prioridad:");
+        List<Ticket> ticketsPorPrioridad = TicketABM.getInstance().traerPorPrioridad("Alta");
+        for (Ticket t : ticketsPorPrioridad) {
+            System.out.println("LOG - Ticket por prioridad: " + t);
+        }
 
         // 3. Traer usuarios administradores
         System.out.println("\n3. Usuarios administradores:");

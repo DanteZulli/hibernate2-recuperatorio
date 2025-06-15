@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.LocalidadDao;
 import datos.Localidad;
+import datos.Provincia;
 
 public class LocalidadABM {
 	private static LocalidadABM instancia = null; // Patrón Singleton
@@ -38,5 +39,10 @@ public class LocalidadABM {
 	// Modificación de Localidad
 	public void modificacion(Localidad localidad) {
 		LocalidadDao.getInstance().actualizar(localidad);
+	}
+
+	// Nuevo método de consulta
+	public List<Localidad> traerPorProvincia(Provincia provincia) {
+		return LocalidadDao.getInstance().traerPorProvincia(provincia);
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import dao.TicketDao;
 import datos.Ticket;
+import datos.Usuario;
+import datos.Tecnico;
 
 public class TicketABM {
 	private static TicketABM instancia = null; // Patrón Singleton
@@ -40,6 +42,7 @@ public class TicketABM {
 	public void modificacion(Ticket ticket) {
 		TicketDao.getInstance().actualizar(ticket);
 	}
+<<<<<<< HEAD
 	
 	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
 	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechas(fechaInicio, fechaFin);
@@ -62,4 +65,23 @@ public class TicketABM {
 	}
 
 	
+=======
+
+	// Nuevos métodos de consulta
+	public List<Ticket> traerPorEstado(String estado) {
+		return TicketDao.getInstance().traerPorEstado(estado);
+	}
+
+	public List<Ticket> traerPorPrioridad(String prioridad) {
+		return TicketDao.getInstance().traerPorPrioridad(prioridad);
+	}
+
+	public List<Ticket> traerPorCreador(Usuario creador) {
+		return TicketDao.getInstance().traerPorCreador(creador);
+	}
+
+	public List<Ticket> traerPorTecnico(Tecnico tecnico) {
+		return TicketDao.getInstance().traerPorTecnico(tecnico);
+	}
+>>>>>>> 8b5b0fdf7509e7f24de0fb40358ec441f8113bcd
 }

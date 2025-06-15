@@ -51,4 +51,17 @@ public class CategoriaDao extends Dao<Categoria> {
 		}
 		return lista;
 	}
+
+	// Nuevo método de consulta
+	public List<Categoria> traerPorNombre(String nombre) throws HibernateException {
+		List<Categoria> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Categoria c where c.nombre=:nombre", Categoria.class)
+					.setParameter("nombre", nombre).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
 }
