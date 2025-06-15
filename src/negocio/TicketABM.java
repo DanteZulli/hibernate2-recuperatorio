@@ -42,7 +42,6 @@ public class TicketABM {
 	public void modificacion(Ticket ticket) {
 		TicketDao.getInstance().actualizar(ticket);
 	}
-<<<<<<< HEAD
 	
 	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
 	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechas(fechaInicio, fechaFin);
@@ -64,9 +63,6 @@ public class TicketABM {
 	    return tickets;
 	}
 
-	
-=======
-
 	// Nuevos métodos de consulta
 	public List<Ticket> traerPorEstado(String estado) {
 		return TicketDao.getInstance().traerPorEstado(estado);
@@ -83,5 +79,4 @@ public class TicketABM {
 	public List<Ticket> traerPorTecnico(Tecnico tecnico) {
 		return TicketDao.getInstance().traerPorTecnico(tecnico);
 	}
->>>>>>> 8b5b0fdf7509e7f24de0fb40358ec441f8113bcd
 }

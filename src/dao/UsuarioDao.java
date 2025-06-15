@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import datos.Ticket;
 import datos.Usuario;
 
 public class UsuarioDao extends Dao<Usuario> {

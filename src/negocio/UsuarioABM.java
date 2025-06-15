@@ -3,9 +3,7 @@ package negocio;
 import java.sql.Timestamp;
 import java.util.List;
 
-import dao.TicketDao;
 import dao.UsuarioDao;
-import datos.Ticket;
 import datos.Usuario;
 
 public class UsuarioABM {

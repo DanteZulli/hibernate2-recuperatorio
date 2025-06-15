@@ -1,104 +1,14 @@
 package test;
 
-import datos.Usuario;
-import datos.Cliente;
-import datos.Tecnico;
-import datos.Ticket;
+import datos.*;
+import negocio.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+/**
+ * 1.2. ABM por lo menos para cuatro clases
+ */
+public class TestABM {
 
-import datos.Area;
-import datos.Categoria;
-import datos.Comentario;
-import datos.Direccion;
-import datos.Etiqueta;
-import datos.Localidad;
-import datos.Provincia;
-import datos.Revision;
-import negocio.UsuarioABM;
-import negocio.ClienteABM;
-import negocio.TecnicoABM;
-import negocio.TicketABM;
-import negocio.AreaABM;
-import negocio.CategoriaABM;
-import negocio.ComentarioABM;
-import negocio.DireccionABM;
-import negocio.EtiquetaABM;
-import negocio.LocalidadABM;
-import negocio.ProvinciaABM;
-import negocio.RevisionABM;
-
-public class TestMain {
-    public static void main(String[] args) {
-        // ----------------------------------------------------------------------
-        // 1.1. Traer todos los objetos de cada una de las clases datos
-        // ----------------------------------------------------------------------
-        System.out.println("\n--- 1.1. Traer todos los objetos de cada clase de datos ---\n");
-
-        System.out.println("Usuarios:");
-        for (Usuario u : UsuarioABM.getInstance().traer()) {
-            System.out.println(u);
-        }
-
-        System.out.println("\nClientes:");
-        for (Cliente c : ClienteABM.getInstance().traer()) {
-            System.out.println(c);
-        }
-
-        System.out.println("\nTécnicos:");
-        for (Tecnico t : TecnicoABM.getInstance().traer()) {
-            System.out.println(t);
-        }
-
-        System.out.println("\nTickets:");
-        for (Ticket t : TicketABM.getInstance().traer()) {
-            System.out.println(t);
-        }
-
-        System.out.println("\nÁreas:");
-        for (Area a : AreaABM.getInstance().traer()) {
-            System.out.println(a);
-        }
-
-        System.out.println("\nCategorías:");
-        for (Categoria cat : CategoriaABM.getInstance().traer()) {
-            System.out.println(cat);
-        }
-
-        System.out.println("\nComentarios:");
-        for (Comentario com : ComentarioABM.getInstance().traer()) {
-            System.out.println(com);
-        }
-
-        System.out.println("\nDirecciones:");
-        for (Direccion d : DireccionABM.getInstance().traer()) {
-            System.out.println(d);
-        }
-
-        System.out.println("\nEtiquetas:");
-        for (Etiqueta e : EtiquetaABM.getInstance().traer()) {
-            System.out.println(e);
-        }
-
-        System.out.println("\nLocalidades:");
-        for (Localidad l : LocalidadABM.getInstance().traer()) {
-            System.out.println(l);
-        }
-
-        System.out.println("\nProvincias:");
-        for (Provincia p : ProvinciaABM.getInstance().traer()) {
-            System.out.println(p);
-        }
-
-        System.out.println("\nRevisiones:");
-        for (Revision r : RevisionABM.getInstance().traer()) {
-            System.out.println(r);
-        }
-
-        // ----------------------------------------------------------------------
-        // 1.2. ABM para Cliente, Tecnico, Ticket y Area
-        // ----------------------------------------------------------------------
+    public static void main(String[] args) throws Exception {
         System.out.println("\n--- 1.2. ABM para Cliente, Tecnico, Ticket y Area ---\n");
 
         // ===================== PROVINCIAS Y LOCALIDADES =====================
@@ -263,7 +173,7 @@ public class TestMain {
 
         // ===================== CATEGORÍAS =====================
         Categoria categoria1 = new Categoria();
-        categoria1.setNombre("Redes");  
+        categoria1.setNombre("Redes");
         categoria1.setDescripcion("Problemas de red");
         int idCategoria1 = CategoriaABM.getInstance().alta(categoria1);
         categoria1.setId(idCategoria1);
@@ -319,31 +229,6 @@ public class TestMain {
         // Baja de ticket
         TicketABM.getInstance().baja(ticket3);
         System.out.println("Ticket eliminado: " + ticket3);
-        
-        /*//Crear comentarios
-        Comentario com = new Comentario();
-        com.setMensaje("Corte general");
-        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setTicket(ticket3);
-        com.setUsuario(cliente1);
-        ComentarioABM.getInstance().alta(com);
-        
-        Comentario com2 = new Comentario();
-        com.setMensaje("Es la impresora 2");
-        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setTicket(ticket2);
-        com.setUsuario(cliente2);
-        ComentarioABM.getInstance().alta(com2);
-        
-        Comentario com3 = new Comentario();
-        com.setMensaje("Corte generalizado de la red");
-        com.setFecha(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setCreateAt(new java.sql.Timestamp(System.currentTimeMillis()));
-        com.setTicket(ticket1);
-        com.setUsuario(cliente1);
-        ComentarioABM.getInstance().alta(com3);*/
-        
     }
+
 }

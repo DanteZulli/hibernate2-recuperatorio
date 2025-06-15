@@ -56,7 +56,6 @@ public class TicketDao extends Dao<Ticket> {
 		}
 		return lista;
 	}
-<<<<<<< HEAD
 	
 	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
 	    List<Ticket> tickets = null;
@@ -101,9 +100,8 @@ public class TicketDao extends Dao<Ticket> {
 	    }
 
 	    return tickets;
-=======
-
-	// Nuevos métodos de consulta
+	}
+	
 	public List<Ticket> traerPorEstado(String estado) throws HibernateException {
 		List<Ticket> lista = null;
 		try {
@@ -150,6 +148,5 @@ public class TicketDao extends Dao<Ticket> {
 			session.close();
 		}
 		return lista;
->>>>>>> 8b5b0fdf7509e7f24de0fb40358ec441f8113bcd
 	}
 }

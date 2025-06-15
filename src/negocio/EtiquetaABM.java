@@ -42,14 +42,22 @@ public class EtiquetaABM {
 	public void modificacion(Etiqueta etiqueta) {
 		EtiquetaDao.getInstance().actualizar(etiqueta);
 	}
-	
+
 	public List<Etiqueta> obtenerEtiquetaPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
-	    List<Etiqueta> etiqueta = EtiquetaDao.getInstance().obtenerEtiquetasPorFechas(fechaInicio, fechaFin);
+		List<Etiqueta> etiqueta = EtiquetaDao.getInstance().obtenerEtiquetasPorFechas(fechaInicio, fechaFin);
 
-	    if (etiqueta == null || etiqueta.isEmpty()) {
-	        throw new Exception("No se encontraron tickets en el intervalo de fechas especificado.");
-	    }
+		if (etiqueta == null || etiqueta.isEmpty()) {
+			throw new Exception("No se encontraron tickets en el intervalo de fechas especificado.");
+		}
 
-	    return etiqueta;
+		return etiqueta;
+	}
+
+	public List<Etiqueta> obtenerEtiquetaPorFechaYNombre(Timestamp fecha, String nombre) throws Exception {
+		List<Etiqueta> etiquetas = EtiquetaDao.getInstance().obtenerEtiquetaPorFechaYNombre(fecha, nombre);
+		if (etiquetas == null || etiquetas.isEmpty()) {
+			throw new Exception("No se encontraron etiquetas para la fecha y nombre especificados.");
+		}
+		return etiquetas;
 	}
 }

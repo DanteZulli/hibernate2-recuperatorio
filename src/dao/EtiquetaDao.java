@@ -37,7 +37,7 @@ public class EtiquetaDao extends Dao<Etiqueta> {
 		try {
 			iniciaOperacion();
 			objeto = (Etiqueta) session.createQuery("from Etiqueta e where e.id=:idEtiqueta")
-						.setParameter("idEtiqueta", idEtiqueta).uniqueResult();
+					.setParameter("idEtiqueta", idEtiqueta).uniqueResult();
 		} finally {
 			session.close();
 		}
@@ -54,26 +54,42 @@ public class EtiquetaDao extends Dao<Etiqueta> {
 		}
 		return lista;
 	}
-	
+
 	public List<Etiqueta> obtenerEtiquetasPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
-	    List<Etiqueta> etiquetas = null;
+		List<Etiqueta> etiquetas = null;
 
-	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-	        session.beginTransaction();
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
 
-	        // Usamos la clase Etiqueta y el atributo createAt
-	        String hql = "FROM Etiqueta e WHERE e.createAt BETWEEN :fechaInicio AND :fechaFin";
-	        Query<Etiqueta> query = session.createQuery(hql, Etiqueta.class);
-	        query.setParameter("fechaInicio", fechaInicio);
-	        query.setParameter("fechaFin", fechaFin);
+			// Usamos la clase Etiqueta y el atributo createAt
+			String hql = "FROM Etiqueta e WHERE e.createAt BETWEEN :fechaInicio AND :fechaFin";
+			Query<Etiqueta> query = session.createQuery(hql, Etiqueta.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
 
-	        etiquetas = query.getResultList();
+			etiquetas = query.getResultList();
 
-	        session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-	    return etiquetas;
+		return etiquetas;
+	}
+
+	public List<Etiqueta> obtenerEtiquetaPorFechaYNombre(Timestamp fecha, String nombre) {
+		List<Etiqueta> etiquetas = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			String hql = "FROM Etiqueta e WHERE e.createAt = :fecha AND e.nombre = :nombre";
+			Query<Etiqueta> query = session.createQuery(hql, Etiqueta.class);
+			query.setParameter("fecha", fecha);
+			query.setParameter("nombre", nombre);
+			etiquetas = query.getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return etiquetas;
 	}
 }

@@ -42,14 +42,22 @@ public class ComentarioABM {
 	public void modificacion(Comentario comentario) {
 		ComentarioDao.getInstance().actualizar(comentario);
 	}
-	
+
 	public List<Comentario> obtenerComentarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
-	    List<Comentario> comentario = ComentarioDao.getInstance().obtenerComentariosPorFechas(fechaInicio, fechaFin);
+		List<Comentario> comentario = ComentarioDao.getInstance().obtenerComentariosPorFechas(fechaInicio, fechaFin);
 
-	    if (comentario == null || comentario.isEmpty()) {
-	        throw new Exception("No se encontraron Comentarios en el intervalo de fechas especificado.");
-	    }
+		if (comentario == null || comentario.isEmpty()) {
+			throw new Exception("No se encontraron Comentarios en el intervalo de fechas especificado.");
+		}
 
-	    return comentario;
+		return comentario;
+	}
+
+	public List<Comentario> obtenerComentarioPorFechaYMensaje(Timestamp fecha, String mensaje) throws Exception {
+		List<Comentario> comentarios = ComentarioDao.getInstance().obtenerComentarioPorFechaYMensaje(fecha, mensaje);
+		if (comentarios == null || comentarios.isEmpty()) {
+			throw new Exception("No se encontraron comentarios para la fecha y mensaje especificados.");
+		}
+		return comentarios;
 	}
 }
