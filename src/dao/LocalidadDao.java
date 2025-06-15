@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 
 import datos.Localidad;
+import datos.Provincia;
 
 public class LocalidadDao extends Dao<Localidad> {
 	private static LocalidadDao instancia = null; // Patrón Singleton
@@ -46,6 +47,19 @@ public class LocalidadDao extends Dao<Localidad> {
 		try {
 			iniciaOperacion();
 			lista = session.createQuery("from Localidad", Localidad.class).list();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	// Nuevo método de consulta
+	public List<Localidad> traerPorProvincia(Provincia provincia) throws HibernateException {
+		List<Localidad> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Localidad l where l.provincia=:provincia", Localidad.class)
+					.setParameter("provincia", provincia).list();
 		} finally {
 			session.close();
 		}

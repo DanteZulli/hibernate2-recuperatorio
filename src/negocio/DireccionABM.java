@@ -39,4 +39,9 @@ public class DireccionABM {
 	public void modificacion(Direccion direccion) {
 		DireccionDao.getInstance().actualizar(direccion);
 	}
+
+	// Nuevo método de consulta
+	public List<Direccion> traerFiscales() {
+		return DireccionDao.getInstance().traerFiscales();
+	}
 }
