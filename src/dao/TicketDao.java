@@ -1,8 +1,11 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import datos.Ticket;
 import datos.Usuario;
@@ -53,8 +56,52 @@ public class TicketDao extends Dao<Ticket> {
 		}
 		return lista;
 	}
+	
+	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+	    List<Ticket> tickets = null;
 
-	// Nuevos métodos de consulta
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+	        
+	        // Usamos el nombre de la clase: Ticket
+	        // Usamos el nombre del atributo: fechaCreacion
+	        String hql = "FROM Ticket t WHERE t.fechaCreacion BETWEEN :fechaInicio AND :fechaFin";
+	        Query<Ticket> query = session.createQuery(hql, Ticket.class);
+	        query.setParameter("fechaInicio", fechaInicio);
+	        query.setParameter("fechaFin", fechaFin);
+
+	        tickets = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return tickets;
+	}
+	
+	public List<Ticket> obtenerTicketsPorFechaYEstado(Timestamp fecha, String estado) {
+	    List<Ticket> tickets = null;
+
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+
+	        // Consulta: buscamos por fecha exacta y por estado
+	        String hql = "FROM Ticket t WHERE t.createAt = :fecha AND t.estado = :estado";
+	        Query<Ticket> query = session.createQuery(hql, Ticket.class);
+	        query.setParameter("fecha", fecha);
+	        query.setParameter("estado", estado);
+
+	        tickets = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return tickets;
+	}
+	
 	public List<Ticket> traerPorEstado(String estado) throws HibernateException {
 		List<Ticket> lista = null;
 		try {

@@ -1,5 +1,6 @@
 package negocio;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import dao.EtiquetaDao;
@@ -38,5 +39,25 @@ public class EtiquetaABM {
 	// Modificación de Etiqueta
 	public void modificacion(Etiqueta etiqueta) {
 		EtiquetaDao.getInstance().actualizar(etiqueta);
+	}
+
+	public List<Etiqueta> obtenerEtiquetaPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+		List<Etiqueta> etiqueta = EtiquetaDao.getInstance().obtenerEtiquetasPorFechas(fechaInicio, fechaFin);
+
+		if (etiqueta == null || etiqueta.isEmpty()) {
+			System.out.println("No se encontraron etiquetas en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
+		}
+
+		return etiqueta;
+	}
+
+	public List<Etiqueta> obtenerEtiquetaPorFechaYNombre(Timestamp fecha, String nombre) {
+		List<Etiqueta> etiquetas = EtiquetaDao.getInstance().obtenerEtiquetaPorFechaYNombre(fecha, nombre);
+		if (etiquetas == null || etiquetas.isEmpty()) {
+			System.out.println("No se encontraron etiquetas para la fecha y nombre especificados.");
+			return java.util.Collections.emptyList();
+		}
+		return etiquetas;
 	}
 }

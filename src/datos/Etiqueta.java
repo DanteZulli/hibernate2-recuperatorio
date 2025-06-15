@@ -66,7 +66,7 @@ public class Etiqueta {
         return "Etiqueta{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", tickets=" + tickets +
+                /*", tickets=" + tickets +*/
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';

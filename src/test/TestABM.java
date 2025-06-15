@@ -1,100 +1,14 @@
 package test;
 
-import datos.Usuario;
-import datos.Cliente;
-import datos.Tecnico;
-import datos.Ticket;
-import datos.Area;
-import datos.Categoria;
-import datos.Comentario;
-import datos.Direccion;
-import datos.Etiqueta;
-import datos.Localidad;
-import datos.Provincia;
-import datos.Revision;
-import negocio.UsuarioABM;
-import negocio.ClienteABM;
-import negocio.TecnicoABM;
-import negocio.TicketABM;
-import negocio.AreaABM;
-import negocio.CategoriaABM;
-import negocio.ComentarioABM;
-import negocio.DireccionABM;
-import negocio.EtiquetaABM;
-import negocio.LocalidadABM;
-import negocio.ProvinciaABM;
-import negocio.RevisionABM;
+import datos.*;
+import negocio.*;
 
-public class TestMain {
-    public static void main(String[] args) {
-        // ----------------------------------------------------------------------
-        // 1.1. Traer todos los objetos de cada una de las clases datos
-        // ----------------------------------------------------------------------
-        System.out.println("\n--- 1.1. Traer todos los objetos de cada clase de datos ---\n");
+/**
+ * 1.2. ABM por lo menos para cuatro clases
+ */
+public class TestABM {
 
-        System.out.println("Usuarios:");
-        for (Usuario u : UsuarioABM.getInstance().traer()) {
-            System.out.println(u);
-        }
-
-        System.out.println("\nClientes:");
-        for (Cliente c : ClienteABM.getInstance().traer()) {
-            System.out.println(c);
-        }
-
-        System.out.println("\nTécnicos:");
-        for (Tecnico t : TecnicoABM.getInstance().traer()) {
-            System.out.println(t);
-        }
-
-        System.out.println("\nTickets:");
-        for (Ticket t : TicketABM.getInstance().traer()) {
-            System.out.println(t);
-        }
-
-        System.out.println("\nÁreas:");
-        for (Area a : AreaABM.getInstance().traer()) {
-            System.out.println(a);
-        }
-
-        System.out.println("\nCategorías:");
-        for (Categoria cat : CategoriaABM.getInstance().traer()) {
-            System.out.println(cat);
-        }
-
-        System.out.println("\nComentarios:");
-        for (Comentario com : ComentarioABM.getInstance().traer()) {
-            System.out.println(com);
-        }
-
-        System.out.println("\nDirecciones:");
-        for (Direccion d : DireccionABM.getInstance().traer()) {
-            System.out.println(d);
-        }
-
-        System.out.println("\nEtiquetas:");
-        for (Etiqueta e : EtiquetaABM.getInstance().traer()) {
-            System.out.println(e);
-        }
-
-        System.out.println("\nLocalidades:");
-        for (Localidad l : LocalidadABM.getInstance().traer()) {
-            System.out.println(l);
-        }
-
-        System.out.println("\nProvincias:");
-        for (Provincia p : ProvinciaABM.getInstance().traer()) {
-            System.out.println(p);
-        }
-
-        System.out.println("\nRevisiones:");
-        for (Revision r : RevisionABM.getInstance().traer()) {
-            System.out.println(r);
-        }
-
-        // ----------------------------------------------------------------------
-        // 1.2. ABM para Cliente, Tecnico, Ticket y Area
-        // ----------------------------------------------------------------------
+    public static void main(String[] args) throws Exception {
         System.out.println("\n--- 1.2. ABM para Cliente, Tecnico, Ticket y Area ---\n");
 
         // ===================== PROVINCIAS Y LOCALIDADES =====================
@@ -102,12 +16,14 @@ public class TestMain {
         provincia.setNombre("Buenos Aires");
         int idProvincia = ProvinciaABM.getInstance().alta(provincia);
         provincia.setId(idProvincia);
+        System.out.println("Provincia creada: " + provincia);
 
         Localidad localidad = new Localidad();
         localidad.setNombre("La Plata");
         localidad.setProvincia(provincia);
         int idLocalidad = LocalidadABM.getInstance().alta(localidad);
         localidad.setId(idLocalidad);
+        System.out.println("Localidad creada: " + localidad);
 
         // ===================== DIRECCIONES =====================
         Direccion direccion1 = new Direccion();
@@ -118,6 +34,7 @@ public class TestMain {
         direccion1.setFiscal(true);
         int idDireccion1 = DireccionABM.getInstance().alta(direccion1);
         direccion1.setId(idDireccion1);
+        System.out.println("Dirección creada: " + direccion1);
 
         Direccion direccion2 = new Direccion();
         direccion2.setCalle("Calle 2");
@@ -127,6 +44,7 @@ public class TestMain {
         direccion2.setFiscal(false);
         int idDireccion2 = DireccionABM.getInstance().alta(direccion2);
         direccion2.setId(idDireccion2);
+        System.out.println("Dirección creada: " + direccion2);
 
         Direccion direccion3 = new Direccion();
         direccion3.setCalle("Calle 3");
@@ -136,22 +54,26 @@ public class TestMain {
         direccion3.setFiscal(true);
         int idDireccion3 = DireccionABM.getInstance().alta(direccion3);
         direccion3.setId(idDireccion3);
+        System.out.println("Dirección creada: " + direccion3);
 
         // ===================== ÁREAS =====================
         Area area1 = new Area();
         area1.setNombre("Soporte");
         int idArea1 = AreaABM.getInstance().alta(area1);
         area1.setId(idArea1);
+        System.out.println("Área creada: " + area1);
 
         Area area2 = new Area();
         area2.setNombre("Desarrollo");
         int idArea2 = AreaABM.getInstance().alta(area2);
         area2.setId(idArea2);
+        System.out.println("Área creada: " + area2);
 
         Area area3 = new Area();
         area3.setNombre("Infraestructura");
         int idArea3 = AreaABM.getInstance().alta(area3);
         area3.setId(idArea3);
+        System.out.println("Área creada: " + area3);
 
         // Modificación de área
         area1.setNombre("Soporte Técnico");
@@ -175,6 +97,7 @@ public class TestMain {
         cliente1.setDireccion(direccion1);
         int idCliente1 = ClienteABM.getInstance().alta(cliente1);
         cliente1.setId(idCliente1);
+        System.out.println("Cliente creado: " + cliente1);
 
         Cliente cliente2 = new Cliente();
         cliente2.setNombre("Maria Gomez");
@@ -188,6 +111,7 @@ public class TestMain {
         cliente2.setDireccion(direccion2);
         int idCliente2 = ClienteABM.getInstance().alta(cliente2);
         cliente2.setId(idCliente2);
+        System.out.println("Cliente creado: " + cliente2);
 
         Cliente cliente3 = new Cliente();
         cliente3.setNombre("Carlos Ruiz");
@@ -201,6 +125,7 @@ public class TestMain {
         cliente3.setDireccion(direccion3);
         int idCliente3 = ClienteABM.getInstance().alta(cliente3);
         cliente3.setId(idCliente3);
+        System.out.println("Cliente creado: " + cliente3);
 
         // Modificación de cliente
         cliente1.setPlan("Básico");
@@ -223,6 +148,7 @@ public class TestMain {
         tecnico1.setArea(area1);
         int idTecnico1 = TecnicoABM.getInstance().alta(tecnico1);
         tecnico1.setId(idTecnico1);
+        System.out.println("Técnico creado: " + tecnico1);
 
         Tecnico tecnico2 = new Tecnico();
         tecnico2.setNombre("Pedro Torres");
@@ -235,6 +161,7 @@ public class TestMain {
         tecnico2.setArea(area2);
         int idTecnico2 = TecnicoABM.getInstance().alta(tecnico2);
         tecnico2.setId(idTecnico2);
+        System.out.println("Técnico creado: " + tecnico2);
 
         Tecnico tecnico3 = new Tecnico();
         tecnico3.setNombre("Laura Díaz");
@@ -247,6 +174,7 @@ public class TestMain {
         tecnico3.setArea(area1);
         int idTecnico3 = TecnicoABM.getInstance().alta(tecnico3);
         tecnico3.setId(idTecnico3);
+        System.out.println("Técnico creado: " + tecnico3);
 
         // Modificación de técnico
         tecnico1.setEmpresa("TechPro");
@@ -259,10 +187,11 @@ public class TestMain {
 
         // ===================== CATEGORÍAS =====================
         Categoria categoria1 = new Categoria();
-        categoria1.setNombre("Redes");  
+        categoria1.setNombre("Redes");
         categoria1.setDescripcion("Problemas de red");
         int idCategoria1 = CategoriaABM.getInstance().alta(categoria1);
         categoria1.setId(idCategoria1);
+        System.out.println("Categoría creada: " + categoria1);
 
         Categoria categoria2 = new Categoria();
         categoria2.setNombre("Hardware");
@@ -316,4 +245,5 @@ public class TestMain {
         TicketABM.getInstance().baja(ticket3);
         System.out.println("Ticket eliminado: " + ticket3);
     }
+
 }

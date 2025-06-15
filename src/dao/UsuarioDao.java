@@ -1,8 +1,11 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import datos.Usuario;
 
@@ -102,5 +105,49 @@ public class UsuarioDao extends Dao<Usuario> {
 			session.close();
 		}
 		return objeto;
+	}
+	
+	public List<Usuario> obtenerUsuarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+	    List<Usuario> usuario = null;
+
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+	        
+	        // Usamos el nombre de la clase: Ticket
+	        // Usamos el nombre del atributo: fechaCreacion
+	        String hql = "FROM Usuario t WHERE t.createAt BETWEEN :fechaInicio AND :fechaFin";
+	        Query<Usuario> query = session.createQuery(hql, Usuario.class);
+	        query.setParameter("fechaInicio", fechaInicio);
+	        query.setParameter("fechaFin", fechaFin);
+
+	        usuario = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return usuario;
+	}
+	
+	public List<Usuario> buscarPorFechaYNombre(Timestamp fecha, String nombre) {
+	    List<Usuario> usuarios = null;
+
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        session.beginTransaction();
+
+	        String hql = "FROM Usuario u WHERE u.createAt = :fecha AND u.nombre = :nombre";
+	        Query<Usuario> query = session.createQuery(hql, Usuario.class);
+	        query.setParameter("fecha", fecha);
+	        query.setParameter("nombre", nombre);
+
+	        usuarios = query.getResultList();
+
+	        session.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return usuarios;
 	}
 }

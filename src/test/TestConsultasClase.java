@@ -1,20 +1,25 @@
 package test;
 
+
 import negocio.*;
 import datos.*;
 import java.util.List;
 
+/**
+ * 1.3 Mínimo cuatro consultas por algún atributo del tipo clase
+ * 1.4 Mínimo cuatro consultas por algún atributo de la subclase
+ */
 public class TestConsultasClase {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("=== 1.3. Consultas por atributo de clase base (Usuario) ===\n");
-        
+
         // 1. Traer usuarios por nombre
         System.out.println("1. Usuarios que contienen 'Juan' en su nombre:");
         List<Usuario> usuariosPorNombre = UsuarioABM.getInstance().traerPorNombre("Juan");
         for (Usuario u : usuariosPorNombre) {
             System.out.println("LOG: " + u);
         }
-        
+
         // 2. Traer tickets por prioridad
         System.out.println("\n2. Tickets por Prioridad:");
         List<Ticket> ticketsPorPrioridad = TicketABM.getInstance().traerPorPrioridad("Alta");
@@ -34,7 +39,7 @@ public class TestConsultasClase {
         Usuario usuarioPorUsername = UsuarioABM.getInstance().traerPorNombreUsuario("jperez");
         System.out.println("LOG: " + usuarioPorUsername);
 
-        System.out.println("\n=== 1.4. Consultas por atributo de subclase ===\n");
+        System.out.println("\n=== 1.4. Consultas por atributo de subclases (Cliente, Tecnico) ===\n");
 
         // 1. Traer clientes por plan
         System.out.println("1. Clientes con plan 'Básico':");
@@ -59,10 +64,11 @@ public class TestConsultasClase {
 
         // 4. Traer técnicos por área
         System.out.println("\n4. Técnicos del área 'Soporte Técnico':");
-        Area areaSoporte = AreaABM.getInstance().traer(1); // El área con ID 1 es "Soporte Técnico"
+        Area areaSoporte = AreaABM.getInstance().traer(1);
         List<Tecnico> tecnicosPorArea = TecnicoABM.getInstance().traerPorArea(areaSoporte);
         for (Tecnico t : tecnicosPorArea) {
             System.out.println("LOG: " + t);
         }
     }
+
 }
