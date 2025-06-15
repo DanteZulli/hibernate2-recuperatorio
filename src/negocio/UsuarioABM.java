@@ -79,4 +79,25 @@ public class UsuarioABM {
 
 		return usuario;
 	}
+
+	// Consulta por fechas y admin
+	public List<Usuario> obtenerUsuariosAdministradoresPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+		List<Usuario> usuarios = UsuarioDao.getInstance().obtenerUsuariosAdministradoresPorFechas(fechaInicio,
+				fechaFin);
+		if (usuarios == null || usuarios.isEmpty()) {
+			System.out.println("No se encontraron usuarios administradores en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
+		}
+		return usuarios;
+	}
+
+	// Consulta por fecha y plan
+	public List<Usuario> obtenerUsuarioPorFechaYPlan(Timestamp fecha, String plan) {
+		List<Usuario> usuarios = UsuarioDao.getInstance().obtenerUsuarioPorFechaYPlan(fecha, plan);
+		if (usuarios == null || usuarios.isEmpty()) {
+			System.out.println("No se encontraron usuarios para la fecha y plan especificados.");
+			return java.util.Collections.emptyList();
+		}
+		return usuarios;
+	}
 }

@@ -2,6 +2,7 @@ package test;
 
 import datos.*;
 import negocio.*;
+import java.sql.Timestamp;
 
 /**
  * 1.2. ABM por lo menos para cuatro clases
@@ -12,8 +13,12 @@ public class TestABM {
         System.out.println("\n--- 1.2. ABM para Cliente, Tecnico, Ticket y Area ---\n");
 
         // ===================== PROVINCIAS Y LOCALIDADES =====================
+        Timestamp fechaFija = Timestamp.valueOf("2024-03-16 10:00:00");
+
         Provincia provincia = new Provincia();
         provincia.setNombre("Buenos Aires");
+        provincia.setCreateAt(fechaFija);
+        provincia.setUpdateAt(fechaFija);
         int idProvincia = ProvinciaABM.getInstance().alta(provincia);
         provincia.setId(idProvincia);
         System.out.println("Provincia creada: " + provincia);
@@ -21,6 +26,8 @@ public class TestABM {
         Localidad localidad = new Localidad();
         localidad.setNombre("La Plata");
         localidad.setProvincia(provincia);
+        localidad.setCreateAt(fechaFija);
+        localidad.setUpdateAt(fechaFija);
         int idLocalidad = LocalidadABM.getInstance().alta(localidad);
         localidad.setId(idLocalidad);
         System.out.println("Localidad creada: " + localidad);
@@ -32,6 +39,8 @@ public class TestABM {
         direccion1.setCodigoPostal("1900");
         direccion1.setLocalidad(localidad);
         direccion1.setFiscal(true);
+        direccion1.setCreateAt(fechaFija);
+        direccion1.setUpdateAt(fechaFija);
         int idDireccion1 = DireccionABM.getInstance().alta(direccion1);
         direccion1.setId(idDireccion1);
         System.out.println("Dirección creada: " + direccion1);
@@ -42,6 +51,8 @@ public class TestABM {
         direccion2.setCodigoPostal("1901");
         direccion2.setLocalidad(localidad);
         direccion2.setFiscal(false);
+        direccion2.setCreateAt(fechaFija);
+        direccion2.setUpdateAt(fechaFija);
         int idDireccion2 = DireccionABM.getInstance().alta(direccion2);
         direccion2.setId(idDireccion2);
         System.out.println("Dirección creada: " + direccion2);
@@ -52,6 +63,8 @@ public class TestABM {
         direccion3.setCodigoPostal("1902");
         direccion3.setLocalidad(localidad);
         direccion3.setFiscal(true);
+        direccion3.setCreateAt(fechaFija);
+        direccion3.setUpdateAt(fechaFija);
         int idDireccion3 = DireccionABM.getInstance().alta(direccion3);
         direccion3.setId(idDireccion3);
         System.out.println("Dirección creada: " + direccion3);
@@ -59,18 +72,24 @@ public class TestABM {
         // ===================== ÁREAS =====================
         Area area1 = new Area();
         area1.setNombre("Soporte");
+        area1.setCreateAt(fechaFija);
+        area1.setUpdateAt(fechaFija);
         int idArea1 = AreaABM.getInstance().alta(area1);
         area1.setId(idArea1);
         System.out.println("Área creada: " + area1);
 
         Area area2 = new Area();
         area2.setNombre("Desarrollo");
+        area2.setCreateAt(fechaFija);
+        area2.setUpdateAt(fechaFija);
         int idArea2 = AreaABM.getInstance().alta(area2);
         area2.setId(idArea2);
         System.out.println("Área creada: " + area2);
 
         Area area3 = new Area();
         area3.setNombre("Infraestructura");
+        area3.setCreateAt(fechaFija);
+        area3.setUpdateAt(fechaFija);
         int idArea3 = AreaABM.getInstance().alta(area3);
         area3.setId(idArea3);
         System.out.println("Área creada: " + area3);
@@ -95,6 +114,8 @@ public class TestABM {
         cliente1.setPlan("Premium");
         cliente1.setParticular(true);
         cliente1.setDireccion(direccion1);
+        cliente1.setCreateAt(fechaFija);
+        cliente1.setUpdateAt(fechaFija);
         int idCliente1 = ClienteABM.getInstance().alta(cliente1);
         cliente1.setId(idCliente1);
         System.out.println("Cliente creado: " + cliente1);
@@ -109,6 +130,8 @@ public class TestABM {
         cliente2.setPlan("Básico");
         cliente2.setParticular(false);
         cliente2.setDireccion(direccion2);
+        cliente2.setCreateAt(fechaFija);
+        cliente2.setUpdateAt(fechaFija);
         int idCliente2 = ClienteABM.getInstance().alta(cliente2);
         cliente2.setId(idCliente2);
         System.out.println("Cliente creado: " + cliente2);
@@ -123,6 +146,8 @@ public class TestABM {
         cliente3.setPlan("Premium");
         cliente3.setParticular(true);
         cliente3.setDireccion(direccion3);
+        cliente3.setCreateAt(fechaFija);
+        cliente3.setUpdateAt(fechaFija);
         int idCliente3 = ClienteABM.getInstance().alta(cliente3);
         cliente3.setId(idCliente3);
         System.out.println("Cliente creado: " + cliente3);
@@ -142,10 +167,12 @@ public class TestABM {
         tecnico1.setNombreUsuario("alopez");
         tecnico1.setContrasenia("abcd");
         tecnico1.setEmail("ana@mail.com");
-        tecnico1.setEsAdmin(false);
+        tecnico1.setEsAdmin(true);
         tecnico1.setNroContacto("123456789");
         tecnico1.setEmpresa("Soluciones IT");
         tecnico1.setArea(area1);
+        tecnico1.setCreateAt(fechaFija);
+        tecnico1.setUpdateAt(fechaFija);
         int idTecnico1 = TecnicoABM.getInstance().alta(tecnico1);
         tecnico1.setId(idTecnico1);
         System.out.println("Técnico creado: " + tecnico1);
@@ -159,6 +186,8 @@ public class TestABM {
         tecnico2.setNroContacto("987654321");
         tecnico2.setEmpresa("TechPro");
         tecnico2.setArea(area2);
+        tecnico2.setCreateAt(fechaFija);
+        tecnico2.setUpdateAt(fechaFija);
         int idTecnico2 = TecnicoABM.getInstance().alta(tecnico2);
         tecnico2.setId(idTecnico2);
         System.out.println("Técnico creado: " + tecnico2);
@@ -172,6 +201,8 @@ public class TestABM {
         tecnico3.setNroContacto("555555555");
         tecnico3.setEmpresa("Soluciones IT");
         tecnico3.setArea(area1);
+        tecnico3.setCreateAt(fechaFija);
+        tecnico3.setUpdateAt(fechaFija);
         int idTecnico3 = TecnicoABM.getInstance().alta(tecnico3);
         tecnico3.setId(idTecnico3);
         System.out.println("Técnico creado: " + tecnico3);
@@ -189,6 +220,8 @@ public class TestABM {
         Categoria categoria1 = new Categoria();
         categoria1.setNombre("Redes");
         categoria1.setDescripcion("Problemas de red");
+        categoria1.setCreateAt(fechaFija);
+        categoria1.setUpdateAt(fechaFija);
         int idCategoria1 = CategoriaABM.getInstance().alta(categoria1);
         categoria1.setId(idCategoria1);
         System.out.println("Categoría creada: " + categoria1);
@@ -196,6 +229,8 @@ public class TestABM {
         Categoria categoria2 = new Categoria();
         categoria2.setNombre("Hardware");
         categoria2.setDescripcion("Problemas de hardware");
+        categoria2.setCreateAt(fechaFija);
+        categoria2.setUpdateAt(fechaFija);
         int idCategoria2 = CategoriaABM.getInstance().alta(categoria2);
         categoria2.setId(idCategoria2);
 
@@ -208,7 +243,9 @@ public class TestABM {
         ticket1.setCreador(cliente1);
         ticket1.setAsignado(tecnico1);
         ticket1.setCategoria(categoria1);
-        ticket1.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
+        ticket1.setFechaCreacion(fechaFija);
+        ticket1.setCreateAt(fechaFija);
+        ticket1.setUpdateAt(fechaFija);
         int idTicket1 = TicketABM.getInstance().alta(ticket1);
         ticket1.setId(idTicket1);
 
@@ -220,7 +257,9 @@ public class TestABM {
         ticket2.setCreador(cliente2);
         ticket2.setAsignado(tecnico2);
         ticket2.setCategoria(categoria2);
-        ticket2.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
+        ticket2.setFechaCreacion(fechaFija);
+        ticket2.setCreateAt(fechaFija);
+        ticket2.setUpdateAt(fechaFija);
         int idTicket2 = TicketABM.getInstance().alta(ticket2);
         ticket2.setId(idTicket2);
 
@@ -232,7 +271,9 @@ public class TestABM {
         ticket3.setCreador(cliente1);
         ticket3.setAsignado(tecnico2);
         ticket3.setCategoria(categoria1);
-        ticket3.setFechaCreacion(new java.sql.Timestamp(System.currentTimeMillis()));
+        ticket3.setFechaCreacion(fechaFija);
+        ticket3.setCreateAt(fechaFija);
+        ticket3.setUpdateAt(fechaFija);
         int idTicket3 = TicketABM.getInstance().alta(ticket3);
         ticket3.setId(idTicket3);
 

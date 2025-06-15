@@ -81,4 +81,25 @@ public class TicketABM {
 	public List<Ticket> traerPorTecnico(Tecnico tecnico) {
 		return TicketDao.getInstance().traerPorTecnico(tecnico);
 	}
+
+	// Consulta por fechas y prioridad
+	public List<Ticket> obtenerTicketsPorFechasYPrioridad(Timestamp fechaInicio, Timestamp fechaFin, String prioridad) {
+		List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechasYPrioridad(fechaInicio, fechaFin,
+				prioridad);
+		if (tickets == null || tickets.isEmpty()) {
+			System.out.println("No se encontraron tickets en el intervalo de fechas y prioridad especificados.");
+			return java.util.Collections.emptyList();
+		}
+		return tickets;
+	}
+
+	// Consulta por fechas y estado
+	public List<Ticket> obtenerTicketsPorFechasYEstado(Timestamp fechaInicio, Timestamp fechaFin, String estado) {
+		List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechasYEstado(fechaInicio, fechaFin, estado);
+		if (tickets == null || tickets.isEmpty()) {
+			System.out.println("No se encontraron tickets en el intervalo de fechas y estado especificados.");
+			return java.util.Collections.emptyList();
+		}
+		return tickets;
+	}
 }

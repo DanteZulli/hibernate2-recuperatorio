@@ -106,48 +106,80 @@ public class UsuarioDao extends Dao<Usuario> {
 		}
 		return objeto;
 	}
-	
+
 	public List<Usuario> obtenerUsuarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
-	    List<Usuario> usuario = null;
+		List<Usuario> usuario = null;
 
-	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-	        session.beginTransaction();
-	        
-	        // Usamos el nombre de la clase: Ticket
-	        // Usamos el nombre del atributo: fechaCreacion
-	        String hql = "FROM Usuario t WHERE t.createAt BETWEEN :fechaInicio AND :fechaFin";
-	        Query<Usuario> query = session.createQuery(hql, Usuario.class);
-	        query.setParameter("fechaInicio", fechaInicio);
-	        query.setParameter("fechaFin", fechaFin);
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
 
-	        usuario = query.getResultList();
+			// Usamos el nombre de la clase: Ticket
+			// Usamos el nombre del atributo: fechaCreacion
+			String hql = "FROM Usuario t WHERE t.createAt BETWEEN :fechaInicio AND :fechaFin";
+			Query<Usuario> query = session.createQuery(hql, Usuario.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
 
-	        session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			usuario = query.getResultList();
 
-	    return usuario;
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return usuario;
 	}
-	
+
 	public List<Usuario> buscarPorFechaYNombre(Timestamp fecha, String nombre) {
-	    List<Usuario> usuarios = null;
+		List<Usuario> usuarios = null;
 
-	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-	        session.beginTransaction();
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
 
-	        String hql = "FROM Usuario u WHERE u.createAt = :fecha AND u.nombre = :nombre";
-	        Query<Usuario> query = session.createQuery(hql, Usuario.class);
-	        query.setParameter("fecha", fecha);
-	        query.setParameter("nombre", nombre);
+			String hql = "FROM Usuario u WHERE u.createAt = :fecha AND u.nombre = :nombre";
+			Query<Usuario> query = session.createQuery(hql, Usuario.class);
+			query.setParameter("fecha", fecha);
+			query.setParameter("nombre", nombre);
 
-	        usuarios = query.getResultList();
+			usuarios = query.getResultList();
 
-	        session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-	    return usuarios;
+		return usuarios;
+	}
+
+	public List<Usuario> obtenerUsuariosAdministradoresPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+		List<Usuario> usuarios = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			String hql = "FROM Usuario u WHERE u.esAdmin = true AND u.createAt BETWEEN :fechaInicio AND :fechaFin";
+			Query<Usuario> query = session.createQuery(hql, Usuario.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
+			usuarios = query.getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuarios;
+	}
+
+	public List<Usuario> obtenerUsuarioPorFechaYPlan(Timestamp fecha, String plan) {
+		List<Usuario> usuarios = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			String hql = "FROM Usuario u WHERE u.createAt = :fecha AND u.plan = :plan";
+			Query<Usuario> query = session.createQuery(hql, Usuario.class);
+			query.setParameter("fecha", fecha);
+			query.setParameter("plan", plan);
+			usuarios = query.getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuarios;
 	}
 }

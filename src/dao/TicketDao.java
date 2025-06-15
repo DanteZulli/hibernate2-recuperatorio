@@ -56,52 +56,52 @@ public class TicketDao extends Dao<Ticket> {
 		}
 		return lista;
 	}
-	
+
 	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
-	    List<Ticket> tickets = null;
+		List<Ticket> tickets = null;
 
-	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-	        session.beginTransaction();
-	        
-	        // Usamos el nombre de la clase: Ticket
-	        // Usamos el nombre del atributo: fechaCreacion
-	        String hql = "FROM Ticket t WHERE t.fechaCreacion BETWEEN :fechaInicio AND :fechaFin";
-	        Query<Ticket> query = session.createQuery(hql, Ticket.class);
-	        query.setParameter("fechaInicio", fechaInicio);
-	        query.setParameter("fechaFin", fechaFin);
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
 
-	        tickets = query.getResultList();
+			// Usamos el nombre de la clase: Ticket
+			// Usamos el nombre del atributo: fechaCreacion
+			String hql = "FROM Ticket t WHERE t.fechaCreacion BETWEEN :fechaInicio AND :fechaFin";
+			Query<Ticket> query = session.createQuery(hql, Ticket.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
 
-	        session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			tickets = query.getResultList();
 
-	    return tickets;
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return tickets;
 	}
-	
+
 	public List<Ticket> obtenerTicketsPorFechaYEstado(Timestamp fecha, String estado) {
-	    List<Ticket> tickets = null;
+		List<Ticket> tickets = null;
 
-	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-	        session.beginTransaction();
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
 
-	        // Consulta: buscamos por fecha exacta y por estado
-	        String hql = "FROM Ticket t WHERE t.createAt = :fecha AND t.estado = :estado";
-	        Query<Ticket> query = session.createQuery(hql, Ticket.class);
-	        query.setParameter("fecha", fecha);
-	        query.setParameter("estado", estado);
+			// Consulta: buscamos por fecha exacta y por estado
+			String hql = "FROM Ticket t WHERE t.createAt = :fecha AND t.estado = :estado";
+			Query<Ticket> query = session.createQuery(hql, Ticket.class);
+			query.setParameter("fecha", fecha);
+			query.setParameter("estado", estado);
 
-	        tickets = query.getResultList();
+			tickets = query.getResultList();
 
-	        session.getTransaction().commit();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-	    return tickets;
+		return tickets;
 	}
-	
+
 	public List<Ticket> traerPorEstado(String estado) throws HibernateException {
 		List<Ticket> lista = null;
 		try {
@@ -148,5 +148,39 @@ public class TicketDao extends Dao<Ticket> {
 			session.close();
 		}
 		return lista;
+	}
+
+	public List<Ticket> obtenerTicketsPorFechasYPrioridad(Timestamp fechaInicio, Timestamp fechaFin, String prioridad) {
+		List<Ticket> tickets = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			String hql = "FROM Ticket t WHERE t.fechaCreacion BETWEEN :fechaInicio AND :fechaFin AND t.prioridad = :prioridad";
+			Query<Ticket> query = session.createQuery(hql, Ticket.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
+			query.setParameter("prioridad", prioridad);
+			tickets = query.getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tickets;
+	}
+
+	public List<Ticket> obtenerTicketsPorFechasYEstado(Timestamp fechaInicio, Timestamp fechaFin, String estado) {
+		List<Ticket> tickets = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			String hql = "FROM Ticket t WHERE t.fechaCreacion BETWEEN :fechaInicio AND :fechaFin AND t.estado = :estado";
+			Query<Ticket> query = session.createQuery(hql, Ticket.class);
+			query.setParameter("fechaInicio", fechaInicio);
+			query.setParameter("fechaFin", fechaFin);
+			query.setParameter("estado", estado);
+			tickets = query.getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tickets;
 	}
 }
