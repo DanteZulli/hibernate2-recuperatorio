@@ -16,12 +16,14 @@ public class TestABM {
         provincia.setNombre("Buenos Aires");
         int idProvincia = ProvinciaABM.getInstance().alta(provincia);
         provincia.setId(idProvincia);
+        System.out.println("Provincia creada: " + provincia);
 
         Localidad localidad = new Localidad();
         localidad.setNombre("La Plata");
         localidad.setProvincia(provincia);
         int idLocalidad = LocalidadABM.getInstance().alta(localidad);
         localidad.setId(idLocalidad);
+        System.out.println("Localidad creada: " + localidad);
 
         // ===================== DIRECCIONES =====================
         Direccion direccion1 = new Direccion();
@@ -32,6 +34,7 @@ public class TestABM {
         direccion1.setFiscal(true);
         int idDireccion1 = DireccionABM.getInstance().alta(direccion1);
         direccion1.setId(idDireccion1);
+        System.out.println("Dirección creada: " + direccion1);
 
         Direccion direccion2 = new Direccion();
         direccion2.setCalle("Calle 2");
@@ -41,6 +44,7 @@ public class TestABM {
         direccion2.setFiscal(false);
         int idDireccion2 = DireccionABM.getInstance().alta(direccion2);
         direccion2.setId(idDireccion2);
+        System.out.println("Dirección creada: " + direccion2);
 
         Direccion direccion3 = new Direccion();
         direccion3.setCalle("Calle 3");
@@ -50,22 +54,26 @@ public class TestABM {
         direccion3.setFiscal(true);
         int idDireccion3 = DireccionABM.getInstance().alta(direccion3);
         direccion3.setId(idDireccion3);
+        System.out.println("Dirección creada: " + direccion3);
 
         // ===================== ÁREAS =====================
         Area area1 = new Area();
         area1.setNombre("Soporte");
         int idArea1 = AreaABM.getInstance().alta(area1);
         area1.setId(idArea1);
+        System.out.println("Área creada: " + area1);
 
         Area area2 = new Area();
         area2.setNombre("Desarrollo");
         int idArea2 = AreaABM.getInstance().alta(area2);
         area2.setId(idArea2);
+        System.out.println("Área creada: " + area2);
 
         Area area3 = new Area();
         area3.setNombre("Infraestructura");
         int idArea3 = AreaABM.getInstance().alta(area3);
         area3.setId(idArea3);
+        System.out.println("Área creada: " + area3);
 
         // Modificación de área
         area1.setNombre("Soporte Técnico");
@@ -89,6 +97,7 @@ public class TestABM {
         cliente1.setDireccion(direccion1);
         int idCliente1 = ClienteABM.getInstance().alta(cliente1);
         cliente1.setId(idCliente1);
+        System.out.println("Cliente creado: " + cliente1);
 
         Cliente cliente2 = new Cliente();
         cliente2.setNombre("Maria Gomez");
@@ -102,6 +111,7 @@ public class TestABM {
         cliente2.setDireccion(direccion2);
         int idCliente2 = ClienteABM.getInstance().alta(cliente2);
         cliente2.setId(idCliente2);
+        System.out.println("Cliente creado: " + cliente2);
 
         Cliente cliente3 = new Cliente();
         cliente3.setNombre("Carlos Ruiz");
@@ -115,6 +125,7 @@ public class TestABM {
         cliente3.setDireccion(direccion3);
         int idCliente3 = ClienteABM.getInstance().alta(cliente3);
         cliente3.setId(idCliente3);
+        System.out.println("Cliente creado: " + cliente3);
 
         // Modificación de cliente
         cliente1.setPlan("Básico");
@@ -137,6 +148,7 @@ public class TestABM {
         tecnico1.setArea(area1);
         int idTecnico1 = TecnicoABM.getInstance().alta(tecnico1);
         tecnico1.setId(idTecnico1);
+        System.out.println("Técnico creado: " + tecnico1);
 
         Tecnico tecnico2 = new Tecnico();
         tecnico2.setNombre("Pedro Torres");
@@ -149,6 +161,7 @@ public class TestABM {
         tecnico2.setArea(area2);
         int idTecnico2 = TecnicoABM.getInstance().alta(tecnico2);
         tecnico2.setId(idTecnico2);
+        System.out.println("Técnico creado: " + tecnico2);
 
         Tecnico tecnico3 = new Tecnico();
         tecnico3.setNombre("Laura Díaz");
@@ -161,6 +174,7 @@ public class TestABM {
         tecnico3.setArea(area1);
         int idTecnico3 = TecnicoABM.getInstance().alta(tecnico3);
         tecnico3.setId(idTecnico3);
+        System.out.println("Técnico creado: " + tecnico3);
 
         // Modificación de técnico
         tecnico1.setEmpresa("TechPro");
@@ -177,6 +191,7 @@ public class TestABM {
         categoria1.setDescripcion("Problemas de red");
         int idCategoria1 = CategoriaABM.getInstance().alta(categoria1);
         categoria1.setId(idCategoria1);
+        System.out.println("Categoría creada: " + categoria1);
 
         Categoria categoria2 = new Categoria();
         categoria2.setNombre("Hardware");

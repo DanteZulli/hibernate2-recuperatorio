@@ -4,9 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import dao.ComentarioDao;
-import dao.UsuarioDao;
 import datos.Comentario;
-import datos.Usuario;
 
 public class ComentarioABM {
 	private static ComentarioABM instancia = null; // Patrón Singleton
@@ -43,20 +41,22 @@ public class ComentarioABM {
 		ComentarioDao.getInstance().actualizar(comentario);
 	}
 
-	public List<Comentario> obtenerComentarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
+	public List<Comentario> obtenerComentarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
 		List<Comentario> comentario = ComentarioDao.getInstance().obtenerComentariosPorFechas(fechaInicio, fechaFin);
 
 		if (comentario == null || comentario.isEmpty()) {
-			throw new Exception("No se encontraron Comentarios en el intervalo de fechas especificado.");
+			System.out.println("No se encontraron Comentarios en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
 		}
 
 		return comentario;
 	}
 
-	public List<Comentario> obtenerComentarioPorFechaYMensaje(Timestamp fecha, String mensaje) throws Exception {
+	public List<Comentario> obtenerComentarioPorFechaYMensaje(Timestamp fecha, String mensaje) {
 		List<Comentario> comentarios = ComentarioDao.getInstance().obtenerComentarioPorFechaYMensaje(fecha, mensaje);
 		if (comentarios == null || comentarios.isEmpty()) {
-			throw new Exception("No se encontraron comentarios para la fecha y mensaje especificados.");
+			System.out.println("No se encontraron comentarios para la fecha y mensaje especificados.");
+			return java.util.Collections.emptyList();
 		}
 		return comentarios;
 	}

@@ -4,9 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import dao.EtiquetaDao;
-import dao.TicketDao;
 import datos.Etiqueta;
-import datos.Ticket;
 
 public class EtiquetaABM {
 	private static EtiquetaABM instancia = null; // Patrón Singleton
@@ -43,20 +41,22 @@ public class EtiquetaABM {
 		EtiquetaDao.getInstance().actualizar(etiqueta);
 	}
 
-	public List<Etiqueta> obtenerEtiquetaPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
+	public List<Etiqueta> obtenerEtiquetaPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
 		List<Etiqueta> etiqueta = EtiquetaDao.getInstance().obtenerEtiquetasPorFechas(fechaInicio, fechaFin);
 
 		if (etiqueta == null || etiqueta.isEmpty()) {
-			throw new Exception("No se encontraron tickets en el intervalo de fechas especificado.");
+			System.out.println("No se encontraron etiquetas en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
 		}
 
 		return etiqueta;
 	}
 
-	public List<Etiqueta> obtenerEtiquetaPorFechaYNombre(Timestamp fecha, String nombre) throws Exception {
+	public List<Etiqueta> obtenerEtiquetaPorFechaYNombre(Timestamp fecha, String nombre) {
 		List<Etiqueta> etiquetas = EtiquetaDao.getInstance().obtenerEtiquetaPorFechaYNombre(fecha, nombre);
 		if (etiquetas == null || etiquetas.isEmpty()) {
-			throw new Exception("No se encontraron etiquetas para la fecha y nombre especificados.");
+			System.out.println("No se encontraron etiquetas para la fecha y nombre especificados.");
+			return java.util.Collections.emptyList();
 		}
 		return etiquetas;
 	}

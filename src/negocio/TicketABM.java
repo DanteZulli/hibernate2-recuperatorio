@@ -42,25 +42,27 @@ public class TicketABM {
 	public void modificacion(Ticket ticket) {
 		TicketDao.getInstance().actualizar(ticket);
 	}
-	
-	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
-	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechas(fechaInicio, fechaFin);
 
-	    if (tickets == null || tickets.isEmpty()) {
-	        throw new Exception("No se encontraron tickets en el intervalo de fechas especificado.");
-	    }
+	public List<Ticket> obtenerTicketsPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+		List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechas(fechaInicio, fechaFin);
 
-	    return tickets;
+		if (tickets == null || tickets.isEmpty()) {
+			System.out.println("No se encontraron tickets en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
+		}
+
+		return tickets;
 	}
-	
-		public List<Ticket> obtenerTicketsPorFechaYEstado(Timestamp fecha, String estado) throws Exception {
-	    List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechaYEstado(fecha, estado);
 
-	    if (tickets == null || tickets.isEmpty()) {
-	        throw new Exception("No se encontraron tickets para la fecha y estado especificados.");
-	    }
+	public List<Ticket> obtenerTicketsPorFechaYEstado(Timestamp fecha, String estado) {
+		List<Ticket> tickets = TicketDao.getInstance().obtenerTicketsPorFechaYEstado(fecha, estado);
 
-	    return tickets;
+		if (tickets == null || tickets.isEmpty()) {
+			System.out.println("No se encontraron tickets para la fecha y estado especificados.");
+			return java.util.Collections.emptyList();
+		}
+
+		return tickets;
 	}
 
 	// Nuevos métodos de consulta

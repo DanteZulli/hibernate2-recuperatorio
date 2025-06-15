@@ -57,24 +57,26 @@ public class UsuarioABM {
 	public Usuario traerPorNombreUsuario(String nombreUsuario) {
 		return UsuarioDao.getInstance().traerPorNombreUsuario(nombreUsuario);
 	}
-	
-	public List<Usuario> obtenerUsuarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) throws Exception {
-	    List<Usuario> usuario = UsuarioDao.getInstance().obtenerUsuarioPorFechas(fechaInicio, fechaFin);
 
-	    if (usuario == null || usuario.isEmpty()) {
-	        throw new Exception("No se encontraron usuarios en el intervalo de fechas especificado.");
-	    }
+	public List<Usuario> obtenerUsuarioPorFechas(Timestamp fechaInicio, Timestamp fechaFin) {
+		List<Usuario> usuario = UsuarioDao.getInstance().obtenerUsuarioPorFechas(fechaInicio, fechaFin);
 
-	    return usuario;
+		if (usuario == null || usuario.isEmpty()) {
+			System.out.println("No se encontraron usuarios en el intervalo de fechas especificado.");
+			return java.util.Collections.emptyList();
+		}
+
+		return usuario;
 	}
-	
-	public List<Usuario> obtenerUsuarioPorFechaYNombre(Timestamp fecha, String nombre) throws Exception {
-	    List<Usuario> usuario = UsuarioDao.getInstance().buscarPorFechaYNombre(fecha, nombre);
 
-	    if (usuario == null || usuario.isEmpty()) {
-	        throw new Exception("No se encontraron usuarios para la fecha y nombre especificados.");
-	    }
+	public List<Usuario> obtenerUsuarioPorFechaYNombre(Timestamp fecha, String nombre) {
+		List<Usuario> usuario = UsuarioDao.getInstance().buscarPorFechaYNombre(fecha, nombre);
 
-	    return usuario;
+		if (usuario == null || usuario.isEmpty()) {
+			System.out.println("No se encontraron usuarios para la fecha y nombre especificados.");
+			return java.util.Collections.emptyList();
+		}
+
+		return usuario;
 	}
 }

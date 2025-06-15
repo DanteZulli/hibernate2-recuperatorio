@@ -12,12 +12,16 @@ import negocio.EtiquetaABM;
 import negocio.TicketABM;
 import negocio.UsuarioABM;
 
+/**
+ * 1.5. Mínimo cuatro consultas por intervalo de fechas
+ * 1.6. Mínimo cuatro consultas por una fecha y un atributo de clase
+ */
 public class TestConsultasFechas {
 
 	public static void main(String[] args) throws Exception {
-		// ----------------------------------------------------------------------
-		// 1.5. Mínimo cuatro consultas por intervalo de fechas
-		// ----------------------------------------------------------------------
+
+		System.out.println("=== 1.5. Mínimo cuatro consultas por intervalo de fechas ===\n");
+
 		Timestamp fechaInicio = Timestamp.valueOf("2024-03-15 10:00:00");
 		Timestamp fechaFin = Timestamp.valueOf("2025-06-14 23:59:59");
 
@@ -49,9 +53,7 @@ public class TestConsultasFechas {
 			System.out.println(e);
 		}
 
-		// ----------------------------------------------------------------------
-		// 1.6. Mínimo cuatro consultas por una fecha y un atributo de clase
-		// ----------------------------------------------------------------------
+		System.out.println("=== 1.6. Mínimo cuatro consultas por una fecha y un atributo de clase ===\n");
 
 		// 1. Tickets por fecha y estado
 		List<Ticket> ticketsEstado = TicketABM.getInstance().obtenerTicketsPorFechaYEstado(fechaFin, "Abierto");
