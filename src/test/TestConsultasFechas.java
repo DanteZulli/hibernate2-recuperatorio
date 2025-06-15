@@ -3,12 +3,8 @@ package test;
 import java.sql.Timestamp;
 import java.util.List;
 
-import datos.Comentario;
-import datos.Etiqueta;
 import datos.Ticket;
 import datos.Usuario;
-import negocio.ComentarioABM;
-import negocio.EtiquetaABM;
 import negocio.TicketABM;
 import negocio.UsuarioABM;
 
