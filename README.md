@@ -175,16 +175,22 @@ Para inicializar la base de datos:
    cd hibernate2-recuperatorio
    ```
 
-2. Asegurate de que MySQL esté corriendo y la base de datos esté inicializada (ver sección anterior).
+2. Asegurate de que MySQL esté corriendo y la base de datos esté inicializada (ver sección anterior sobre la base de datos y el script `db.sql`).
 
-3. Compilá el proyecto y ejecutalo desde la terminal:
-   ```bash
-   javac -cp "lib/*" -d bin src/datos/*.java src/dao/*.java src/mapeos/*.java src/negocio/*.java
-   java -cp "bin:lib/*" [paquete.claseMain]
-   ```
-   > Reemplazá `[paquete.claseMain]` por el nombre completo de la clase principal (por ejemplo, `negocio.Main`).
+3. Para probar la solución a los casos de uso del enunciado, ejecutá los diferentes tests ubicados en la carpeta `src/test` desde tu IDE (por ejemplo, Eclipse) o desde la terminal. Cada test corresponde a los siguientes puntos del enunciado:
 
-   También podés ejecutar el proyecto desde tu IDE favorito (VSCode, Eclipse, etc.) configurando el classpath para incluir la carpeta `lib` y seleccionando la clase principal.
+   - **1.1. Traer todos los objetos de cada una de las clases datos:**
+     - Ejecutar `TestTraerDatos.java`
+   - **1.2. ABM por lo menos para cuatro clases:**
+     - Ejecutar `TestABM.java`
+   - **1.3. Mínimo cuatro consultas por algún atributo del tipo clase** y **1.4. Mínimo cuatro consultas por algún atributo de la subclase:**
+     - Ejecutar `TestConsultasClase.java`
+   - **1.5. Mínimo cuatro consultas por intervalo de fechas** y **1.6. Mínimo cuatro consultas por una fecha y un atributo de clase:**
+     - Ejecutar `TestConsultasFechas.java`
+
+> ⚠️ **Importante:** Primero debés ejecutar una vez el test `TestABM.java` para insertar datos de prueba en la base de datos. Luego, podés ejecutar los demás tests para que tengan sentido los resultados de las consultas
+
+> 📝 Todos los tests se ejecutan por consola y muestran los resultados correspondientes a cada punto del enunciado.
 
 ## 📦 Dependencias
 
